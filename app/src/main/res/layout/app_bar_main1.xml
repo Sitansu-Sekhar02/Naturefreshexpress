@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rr_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@color/gradient_background">
+
+        <ImageView
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/_7sdp"
+            android:tag="dw"
+            app:srcCompat="@drawable/ic_menu"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/tvHeaderText"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_home"
+            app:tint="@color/black"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/tvHeaderText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/iv_menu"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <ImageView
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_toLeftOf="@+id/ivCart"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_notifications_grey"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/ivCart"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            app:srcCompat="@drawable/cart_white" />
+
+        <TextView
+            android:id="@+id/tvCount"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@mipmap/circle"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp" />
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_triangle"
+            tools:ignore="VectorDrawableCompat" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/marq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/marquee"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/_16sdp"
+            android:textColor="#038108"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:padding="@dimen/_10sdp"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:text="Welcome to VS FARMA || Thank you for visiting VSfarma.We provide the best service to the customer. Contact us for more details:-
++91-8045802885."
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+       android:id="@+id/rlsearchview"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@drawable/capsule">
+
+        <RelativeLayout
+            android:id="@+id/rlSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_4sdp">
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/DashSearchView"
+                app:iconifiedByDefault="false"
+                app:queryHint="Search category..."
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+          <!--  <ImageView
+                android:id="@+id/ivSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                app:srcCompat="@drawable/search1"
+                tools:ignore="VectorDrawableCompat"
+                app:tint="@color/black_trans" />
+
+            <com.blucor.vsfarm.customecomponent.CustomEdittext
+                style="@style/general_edittext_style"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivSearch"
+                android:background="@null"
+                android:hint="@string/search_for_products"
+                android:textSize="@dimen/_12sdp"
+                app:font_name="NunitoRegular.ttf"
+
+                />-->
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <include layout="@layout/content_main" />
+    <!-- <android.support.design.widget.FloatingActionButton
+         android:id="@+id/fab"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="bottom|end"
+         android:layout_margin="@dimen/fab_margin"
+         app:srcCompat="@android:drawable/ic_dialog_email" />-->
+
+</LinearLayout>

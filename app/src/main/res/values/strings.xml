@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">VS Farma</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="email_mobile_number">User_Id</string>
+    <string name="enter_your_email_mobile_number">Enter Your Email</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="my_profile">My Profile</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="my_account">My Account</string>
+    <string name="return_product">Return Product</string>
+    <string name="cancel_product">Cancel Product</string>
+    <string name="share">Share App</string>
+    <string name="help_support">Help \u0026 Support</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="terms_conditions">Terms \u0026 Conditions</string>
+    <string name="help_center">Chat with us</string>
+    <string name="search_for_products">Search For Products</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invalid_name">Please enter valid name</string>
+    <string name="invalid_PhoneNumber">Please enter valid mobile number</string>
+    <string name="invalid_Email">Please enter valid email</string>
+    <string name="invalid_Password">Enter seven digit password</string>
+    <string name="invalid_address">Please enter address</string>
+</resources>

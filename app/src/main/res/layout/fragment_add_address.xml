@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_below="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name*"
+                    app:font_name="NunitoSemiBold.ttf"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorfont1"
+                    />
+
+                <EditText
+                    android:layout_below="@+id/tv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:hint=""
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/textcolor"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColorHint="@color/dark_grey"
+                    android:background="@null"
+                    android:id="@+id/edName"
+                    />
+
+                <View
+                    android:layout_below="@+id/edName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/colorfont1"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:id="@+id/tv2"
+                    app:font_name="NunitoSemiBold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email*"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorfont1"
+                    />
+
+                <com.blucor.vsfarm.customecomponent.CustomEdittext
+                    android:layout_below="@+id/tv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:hint=""
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/textcolor"
+                    android:singleLine="true"
+                    android:maxLength="10"
+                    android:inputType="number"
+                    app:font_name="NunitoRegular.ttf"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColorHint="@color/dark_grey"
+                    android:background="@null"
+                    android:id="@+id/edMobile"
+                    />
+
+                <View
+                    android:layout_below="@+id/edMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/colorfont1" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alternate Number (Optional)"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorfont1"
+                    />
+
+                <EditText
+                    android:layout_below="@+id/tv3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:hint=""
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/textcolor"
+                    android:singleLine="true"
+                    android:maxLength="10"
+                    android:inputType="number"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColorHint="@color/colorfont1"
+                    android:background="@null"
+                    android:id="@+id/edAlternate"
+                    />
+
+                <View
+                    android:layout_below="@+id/edAlternate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/colorfont1" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:id="@+id/tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flat no.,Building name*"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorfont1"
+                    />
+
+                <EditText
+                    android:layout_below="@+id/tv4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:hint=""
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/textcolor"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColorHint="@color/colorfont1"
+                    android:background="@null"
+                    android:id="@+id/edFlat"
+                    />
+
+                <View
+                    android:layout_below="@+id/edFlat"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/colorfont1"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:id="@+id/tv5"
+                    app:font_name="NunitoSemiBold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact*"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorfont1" />
+
+                <EditText
+                    android:layout_below="@+id/tv5"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:hint="Your mobile number"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@null"
+                    android:id="@+id/edContact"
+                    />
+
+                <View
+                    android:layout_below="@+id/edContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/colorfont1"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:id="@+id/tvAddress"
+                    app:font_name="NunitoSemiBold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address*"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorfont1"
+                    />
+                <EditText
+                    android:layout_below="@+id/tvAddress"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:hint="Enter your full address(with pincode)"
+                    android:textColor="@color/textcolor"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@null"
+                    android:id="@+id/edAddress"
+                    />
+                <View
+                    android:layout_below="@+id/edAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/colorfont1"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:id="@+id/tv8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Landmark (Optional)"
+                    app:font_name="NunitoSemiBold.ttf"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorfont1" />
+
+                <EditText
+                    android:layout_below="@+id/tv8"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:hint=""
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/textcolor"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColorHint="@color/colorfont1"
+                    android:background="@null"
+                    android:id="@+id/edLandmark"/>
+                <View
+                    android:layout_below="@+id/edLandmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/colorfont1"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/green_600"
+                android:text="Save Address"
+                android:padding="0dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

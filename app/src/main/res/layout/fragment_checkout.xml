@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_50"
+        android:orientation="vertical"
+        android:weightSum="10">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9.5"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_68sdp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:weightSum="3">
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:text="LOGIN"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_name="NunitoRegular.ttf" />
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="PAYMENT"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_name="NunitoRegular.ttf" />
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="COMPLETE"
+                        android:textColor="@color/grey_700"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_name="NunitoRegular.ttf" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.4"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/circle" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.3"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/circle" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@color/grey_300" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".2"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="@dimen/_9sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/circle_grey"
+                            app:tint="@color/grey_600" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Your Delivery Address"
+                    android:textColor="@color/black_trans"
+                    android:textSize="@dimen/_12sdp"
+                    app:font_name="NunitoSemiBold.ttf" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_50"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/ic_baseline_location_on_24" />
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="Your Address"
+                            android:id="@+id/tvName"
+                            android:textColor="#333333"
+                            app:font_name="NunitoRegular.ttf" />
+
+                    </LinearLayout>
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:text="Change Address"
+                        android:id="@+id/tvChange"
+                        android:textColor="@color/red_900"
+                        android:textSize="@dimen/_11sdp" />
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:maxLines="2"
+                        android:text="Name :"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoRegular.ttf" />
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:maxLines="2"
+                        android:textStyle="bold"
+                        android:text="Sitansu Sekhar"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoRegular.ttf" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:maxLines="2"
+                        android:text="Address :"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoRegular.ttf" />
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="Flat 18,Rachna Garden Estate,Jagdish Nagar,Aundh -411007"
+                        android:id="@+id/tvPhoneNumber"
+                        android:textColor="@color/grey_700"
+                        android:layout_marginRight="@dimen/_3sdp"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_name="NunitoRegular.ttf"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/white">
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:text="Selected Delivery Slot"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoSemiBold.ttf" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_margin="@dimen/_5sdp"
+                        app:cardCornerRadius="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_gravity="center_vertical"
+                            android:id="@+id/tvTimeslot"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:textSize="@dimen/_10sdp"/>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    >
+
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_gravity="center_vertical"
+                        android:text="CART ITEM"
+                        android:id="@+id/tvCartItemCount"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoSemiBold.ttf" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:scrollbars="vertical" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_15sdp"
+                    android:background="@color/white">
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/rrApply"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp">
+
+                    <ImageView
+                        android:id="@+id/ivImg"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_toRightOf="@+id/ivImg"
+                        android:gravity="center_vertical"
+                        android:text="Apply Coupon"
+                        android:id="@+id/tvApply"
+                        android:textColor="@color/red_900"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoRegular.ttf" />
+
+                    <ImageView
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@drawable/next"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp" />
+                </RelativeLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:text="PRICE DETAILS"
+                        android:textColor="@color/grey_600"
+                        android:textSize="@dimen/_10sdp"
+                        app:font_name="NunitoRegular.ttf" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_width_small"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@color/grey_light" />
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/rr1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/v1">
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:text="Price"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoRegular.ttf" />
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:id="@+id/tvItemCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_toRightOf="@+id/textView12"
+                            android:gravity="center_vertical"
+                            android:text="(1 Item)"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoRegular.ttf" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_toRightOf="@+id/tvItemCount"
+                            android:gravity="center_vertical"
+                            android:text="View"
+                            android:textSize="@dimen/_10sdp"
+                            android:visibility="gone" />
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:id="@+id/tvPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text="\u20b9 40"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoRegular.ttf" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_below="@+id/textView12"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:textColor="@color/black"
+                            android:visibility="gone" />
+
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_below="@+id/rr1">
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:text="Delivery"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoRegular.ttf" />
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text="FREE"
+                            android:id="@+id/tvDelCharges"
+                            android:textColor="@color/green_600"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoRegular.ttf" />
+
+                    </RelativeLayout>
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_width_small"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@color/grey_light" />
+
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:id="@+id/rrCoupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_below="@+id/rr1">
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:text="Coupon Applied"
+                            android:background="@color/white"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoRegular.ttf" />
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text=" "
+                            android:id="@+id/tvCouponAmt"
+                            android:textColor="@color/red_900"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoRegular.ttf" />
+
+                    </RelativeLayout>
+                    <View
+                        android:visibility="gone"
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_width_small"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:background="@color/grey_light" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp">
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:text="Amount Payable"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoBold.ttf" />
+
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:visibility="gone"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:text="\u20b9"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold"
+                            app:font_name="NunitoBold.ttf" />
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:id="@+id/tvTotalAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:text=""
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            android:textStyle="bold"
+                            app:font_name="NunitoBold.ttf" />
+
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_width_small"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@color/grey_light" />
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_20sdp">
+                        <com.blucor.vsfarm.customecomponent.CustomTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:id="@+id/tvSave"
+                            android:text="You will save \u20b9 698 on this order123."
+                            android:textColor="@color/green_600"
+                            android:textSize="@dimen/_10sdp"
+                            app:font_name="NunitoBold.ttf" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_15sdp"
+                        android:background="@color/white"></LinearLayout>
+                </LinearLayout>
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:text="PAYMENT MODE"
+                    android:textColor="@color/grey_600"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_name="NunitoRegular.ttf" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_width_small"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@color/grey_light" />
+                <RelativeLayout
+                    android:id="@+id/rrCod"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_3sdp">
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:srcCompat="@drawable/ic_radio_button_checked"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Cash on Delivery"
+                        android:textSize="@dimen/_12sdp"
+                        android:tag="Selected"
+                        android:textColor="@color/black"
+                        app:font_name="NunitoRegular.ttf"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:layout_toLeftOf="@+id/imageView8"
+                        android:layout_toStartOf="@+id/imageView8"
+                        />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:id="@+id/rrOnline"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_3sdp">
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:srcCompat="@drawable/ic_radio_button_unchecked"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Credit/Debit/Atm card"
+                        android:textSize="@dimen/_12sdp"
+                        android:textColor="@color/black"
+                        app:font_name="NunitoRegular.ttf"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:layout_toLeftOf="@+id/imageView9"
+                        android:layout_toStartOf="@+id/imageView9"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@color/black"
+        android:elevation="30dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+        <com.blucor.vsfarm.customecomponent.CustomTextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="Pay \u20B9 "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:font_name="NunitoRegular.ttf" />
+        <com.blucor.vsfarm.customecomponent.CustomTextView
+            android:id="@+id/tvCheckoutprice"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:font_name="NunitoRegular.ttf" />
+
+        <TextView
+            android:id="@+id/tvProceed"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#E45528"
+            android:gravity="center"
+            android:text="CONTINUE"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/empty_cart" />
+        <com.blucor.vsfarm.customecomponent.CustomButton
+            android:id="@+id/shopNow"
+            android:layout_below="@+id/gif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="SHOP NOW"
+            app:font_name="NunitoSemiBold.ttf"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</LinearLayout>

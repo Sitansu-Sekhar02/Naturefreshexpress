@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/my_profile">
+        <menu>
+
+
+            <item
+                android:id="@+id/my_orders"
+                android:icon="@drawable/ic_shopping_basket_black_24dp"
+                android:iconTint="@color/colorPrimary"
+                android:title="@string/my_orders" />
+            <item
+                android:id="@+id/my_cart"
+                android:icon="@drawable/ic_shopping_cart_black_24dp"
+                android:title="@string/my_cart" />
+           <!-- <item
+                android:id="@+id/my_account"
+                android:iconTint="@color/colorPrimary"
+                android:icon="@drawable/ic_person_black_24dp"
+                android:title="@string/my_account" />-->
+            <item
+                android:id="@+id/info"
+                android:icon="@drawable/ic_baseline_info_24"
+                android:title="About Us" />
+            <item
+                android:id="@+id/share"
+                android:iconTint="@color/colorPrimary"
+                android:icon="@mipmap/share"
+                android:title="@string/share" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_power_settings_new_black_24dp"
+                android:title="Logout" />
+        </menu>
+    </item>
+    <item android:title="@string/help_support"
+        android:visible="false">
+        <menu>
+            <item android:title="@string/help_center"
+                android:id="@+id/chat"
+                />
+        </menu>
+    </item>
+
+</menu>

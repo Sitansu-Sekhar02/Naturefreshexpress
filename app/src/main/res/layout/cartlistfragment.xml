@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_50"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/llcartItem"
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollbars="none"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="9.5"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/recyclerview"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:elevation="30dp"
+            android:background="@color/black">
+            <com.blucor.vsfarm.customecomponent.CustomTextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:font_name="NunitoRegular.ttf"
+                android:text="Total Amount \u20b9 "
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center"/>
+            <com.blucor.vsfarm.customecomponent.CustomTextView
+                android:id="@+id/tvCartprice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:font_name="NunitoRegular.ttf"
+                android:background="@color/white"
+                android:text="0"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvProceed"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#E45528"
+                android:text="PROCEED"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/empty_cart"
+        android:layout_height="match_parent">
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:src="@drawable/empty_cart" />
+        <com.blucor.vsfarm.customecomponent.CustomButton
+            android:id="@+id/shopNow"
+            android:layout_below="@+id/gif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="SHOP NOW"
+            app:font_name="NunitoSemiBold.ttf"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+       <!-- <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/empty_cart" />-->
+
+
+
+    <include android:id="@+id/layout_cart_empty"
+        android:visibility="gone"
+        layout="@layout/empty_message_layout_action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

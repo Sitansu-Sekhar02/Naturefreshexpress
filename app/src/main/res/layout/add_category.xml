@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/grey_light"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".activity.AddCategory">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="@dimen/_35sdp">
+        <ImageView
+            android:id="@+id/Addback"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="center_vertical"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Add Category"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_baseline_category_24"
+        android:layout_marginTop="50dp"
+        android:drawablePadding="@dimen/_5sdp"
+        android:hint="Category Name"
+        android:id="@+id/t1"
+        android:textColor="#000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_height="@dimen/_220sdp">
+        <ImageView
+            android:id="@+id/img"
+            android:background="@drawable/button_border"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_launcher_foreground"
+            tools:ignore="VectorDrawableCompat" />
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:textSize="@dimen/_16sdp"
+        android:textAllCaps="false"
+        android:text="Choose Category"
+        android:id="@+id/browse"/>
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Upload Category"
+        android:textColor="#FFF"
+        android:background="@color/colorPrimary"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/upload"/>
+
+</LinearLayout>

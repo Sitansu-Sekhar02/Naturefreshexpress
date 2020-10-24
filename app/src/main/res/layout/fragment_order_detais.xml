@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white_off"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/square_red"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp">
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Order Details"
+                    app:font_name="NunitoExtraBold.ttf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/_11sdp"
+                        android:textColor="#9F0606"
+                        android:textStyle="bold"
+                        android:text="Order Id:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_50sdp"
+                        android:textColor="@color/myblack"
+                        android:text=" #BM20121"
+                        android:id="@+id/tvOrderId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/_11sdp"
+                        android:textColor="#9F0606"
+                        android:textStyle="bold"
+                        android:text="Order Placed On:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:id="@+id/tvOrderDate"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:textColor="@color/myblack"
+                        android:text=" 22 Dec 2022"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/_11sdp"
+                        android:textColor="#9F0606"
+                        android:text="Order Details:"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:id="@+id/tvProductname"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_28sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/myblack"
+                        android:text="Pipe( 11 Kg )"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/_11sdp"
+                        android:textColor="#9F0606"
+                        android:text="Order Total:"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:id="@+id/tvOrderTotal"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_35sdp"
+                        android:textColor="@color/myblack"
+                        android:text=" \u20B9 1999"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/square_red"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp">
+
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:textStyle="bold"
+                    app:font_name="NunitoExtraBold.ttf"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Shipping Details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Name :"
+                        android:textStyle="bold"
+                        android:textColor="#9F0606"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:id="@+id/tvName"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:textColor="@color/myblack"
+                        android:text=" Rashmi Dwivedi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address :"
+                        android:textStyle="bold"
+                        android:textColor="#9F0606"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:textSize="@dimen/_10sdp"
+                        android:textColor="@color/myblack"
+                        android:maxLines="2"
+                        android:text=" NR Post Office,London Area_1,London,3700426"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/_10sdp"
+                        android:textColor="#9F0606"
+                        android:text="Contact :"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:id="@+id/tvContact"
+                        android:textSize="@dimen/_10sdp"
+                        android:textColor="@color/myblack"
+                        android:text="9856478526"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llTimeSlot"
+                android:orientation="horizontal"
+                android:background="@drawable/square_red"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp">
+
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:font_name="NunitoExtraBold.ttf"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Selected Delivery Slot:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/tvTimeslot"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp"
+                    app:font_name="NunitoRegular.ttf"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_1sdp"
+                    android:text="Payment mode:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="@drawable/square_red"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp">
+
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="#9F0606"
+                    android:textSize="@dimen/_11sdp"
+                    app:font_name="NunitoExtraBold.ttf"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Payment mode:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/tvPaymentMode"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_name="NunitoRegular.ttf"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Cash On Delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llSize"
+                android:orientation="horizontal"
+                android:background="@drawable/square_red"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp">
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="#9F0606"
+                    android:textSize="@dimen/_11sdp"
+                    app:font_name="NunitoExtraBold.ttf"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Quantity:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/tvSize"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    app:font_name="NunitoRegular.ttf"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="1 Kg (x 2 )"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:background="@drawable/square_red"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_125sdp">
+
+
+                <com.blucor.vsfarm.customecomponent.CustomTextView
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp"
+                    app:font_name="NunitoExtraBold.ttf"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:text="Track Order Details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/ivRecived"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:srcCompat="@drawable/ic_radio_button_checked"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/tvOrderStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Received "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/ivCancel"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:srcCompat="@drawable/ic_radio_button_unchecked"
+                        tools:ignore="VectorDrawableCompat" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center_vertical"
+                        android:text="Cancelled"
+                        android:textColor="@color/black_trans"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:srcCompat="@drawable/ic_radio_button_unchecked"
+                        tools:ignore="VectorDrawableCompat" />
+
+
+                    <TextView
+                        android:textColor="@color/black_trans"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Shipped"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/ivDelivered"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        app:srcCompat="@drawable/ic_radio_button_unchecked"
+                        tools:ignore="VectorDrawableCompat" />
+
+
+                    <TextView
+                        android:textColor="@color/black_trans"
+                        android:textSize="@dimen/_10sdp"
+                        android:text="Delivered"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
