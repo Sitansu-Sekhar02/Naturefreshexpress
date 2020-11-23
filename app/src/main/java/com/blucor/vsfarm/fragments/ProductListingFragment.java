@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -59,6 +60,7 @@ import com.blucor.vsfarm.extra.AppSettings;
 import com.blucor.vsfarm.extra.Preferences;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,7 +97,6 @@ public class ProductListingFragment extends Fragment {
 
     Dialog dialog;
 
-
     //gridlayoutmanager
     GridLayoutManager mGridLayoutManager;
 
@@ -106,13 +107,11 @@ public class ProductListingFragment extends Fragment {
 
     ProductAdapter mAdapter;
     //public static final String cart = "http://vsfarma.blucorsys.in/cartItem.php";
-    public static final String cart = "http://vsfarma.blucorsys.in/update_qty.php";
-    public static final String url = "http://vsfarma.blucorsys.in/row.php";
-
+    public static final String cart = "http://vsfastirrigation.com/webservices/update_qty.php";
+    public static final String url = "http://vsfastirrigation.com/webservices/getrow.php";
 
     private List<CategoryProducts> productList;
     private  List<CartItem> cartItem;
-
 
     //Arraylist
     ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
@@ -135,10 +134,9 @@ public class ProductListingFragment extends Fragment {
 
         searchView=view.findViewById(R.id.EdSearchView);
         noProduct=view.findViewById(R.id.no_product);
-      //  prodcutQnty=view.findViewById(R.id.etQuantity);
+      // prodcutQnty=view.findViewById(R.id.etQuantity);
 
-
-        Log.d("data",""+value);
+        Log.e("data",""+getArguments().getString("id"));
 
         productList=new ArrayList<>();
         cartItem=new ArrayList<>();
@@ -177,12 +175,11 @@ public class ProductListingFragment extends Fragment {
         }
 
 
-
 //        tvHeaderText = view.findViewById(R.id.tvHeaderText);
         preferences=new Preferences(getActivity());
 
         //page
-        AppSettings.fromPage="2";
+        //AppSettings.fromPage="2";
 
         DrawerActivity.tvHeaderText.setText("Products");
         DrawerActivity.marquee.setVisibility(View.GONE);
@@ -264,30 +261,137 @@ public class ProductListingFragment extends Fragment {
             public void onResponse(String response) {
                 dialog.cancel();
                 Log.e("response",response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if(jsonObject.getString("success").equalsIgnoreCase("true")) {
+                        JSONArray jsonArray = jsonObject.getJSONArray("Product");
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
-                try{
+
+                            JSONObject Object = jsonArray.getJSONObject(i);
+                            CategoryProducts product = new CategoryProducts();
+                            String product_id=Object.getString("id");
+                            String product_name=Object.getString("product_name");
+                            String product_image="http://vsfastirrigation.com/upload/cat_image/"+Object.getString("product_image");
+                          /*  if (jsonArray.getString(("SizeArray")).equalsIgnoreCase("")){
+
+                                String product_price=Object.getString(("product_price"));
+                                String product_size=Object.getString(("product_size"));
+
+                            }*/
+
+
+
+                            product.setProduct_id(product_id);
+                            product.setProduct_name(product_name);
+                            product.setProduct_image(product_image);
+//                            product.setProduct_price(product_price);
+//                            product.setProduct_size(product_size);
+
+                            //product.setProduct_desc(product_desc);
+
+                            productList.add(product);
+
+
+                        }
+
+                    }
+
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                /*try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    if(jsonObject.getString("success").equalsIgnoreCase("true")){
+                        JSONArray jsonArray=jsonObject.getJSONArray("Product");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            CategoryProducts product = new CategoryProducts();
+                            String category_id=object.getString("cat_id");
+                            String product_id=object.getString("id");
+                            String product_name=object.getString("product_name");
+                            String product_image="http://vsfastirrigation.com/upload/cat_image/"+object.getString("product_image");
+                            JSONArray array=jsonObject.getJSONArray("SizeArray");
+
+                            String product_price=array.getString(Integer.parseInt("product_price"));
+                            String product_size=array.getString(Integer.parseInt("product_size"));
+
+
+
+                            product.setCategory_id(category_id);
+                            product.setProduct_id(product_id);
+                            product.setProduct_name(product_name);
+                            product.setProduct_image(product_image);
+                            product.setProduct_price(product_price);
+                            product.setProduct_size(product_size);
+
+
+                            //product.setProduct_desc(product_desc);
+
+                            productList.add(product);
+
+                    }
+
+
+
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+                        setAdapter();
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }*/
+
+
+              /*  try{
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                         CategoryProducts product = new CategoryProducts();
-                        String category_id=jsonObject.getString("category_id");
-                        String product_id=jsonObject.getString("product_id");
+                        String category_id=jsonObject.getString("cat_id");
+                        String product_id=jsonObject.getString("id");
                         String product_name=jsonObject.getString("product_name");
                         String product_price=jsonObject.getString("product_price");
-                        String product_image="http://vsfarma.blucorsys.in/productimages/"+jsonObject.getString("product_image");
+                        String product_size=jsonObject.getString("product_size");
+                        String product_image="http://vsfastirrigation.com/upload/cat_image/"+jsonObject.getString("product_image");
 
                         //String product_desc=jsonObject.getString("product_desc");
 
-                       /* String res= product_image.replace("//","");
-                        Log.e("responsee",""+res);*/
-                        //category_image.replaceAll("\\/","//");
+                        String res= product_image.replace("//","");
+                        Log.e("responsee",""+res);
                         product.setCategory_id(category_id);
                         product.setProduct_id(product_id);
                         product.setProduct_name(product_name);
                         product.setProduct_image(product_image);
                         product.setProduct_price(product_price);
+                        product.setProduct_size(product_size);
+
+
                         //product.setProduct_desc(product_desc);
 
                         productList.add(product);
@@ -297,7 +401,7 @@ public class ProductListingFragment extends Fragment {
                 }
                 catch (JSONException e) {
                     Log.d("JSONException", e.toString());
-                }
+                }*/
             }
 
         }, new Response.ErrorListener() {
@@ -311,7 +415,9 @@ public class ProductListingFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
-                parameters.put("category_id",getArguments().getString("category_id"));
+                parameters.put("cat_id",getArguments().getString("id"));
+
+             // parameters.put("cat_id","4");
                 return parameters;
             }
         };
@@ -327,6 +433,7 @@ public class ProductListingFragment extends Fragment {
         TextView tvQty;
         TextView cart_item_number;
         ImageView ivProductimage;
+        MaterialBetterSpinner spinner;
 
         ImageButton cart_quant_minus;
         ImageButton cart_quant_add;
@@ -353,6 +460,7 @@ public class ProductListingFragment extends Fragment {
             llAddtocart=itemView.findViewById(R.id.llAddtocart);
             cart_quant_minus=itemView.findViewById(R.id.cart_quant_minus);
             cart_quant_add=itemView.findViewById(R.id.cart_quant_add);
+            spinner=itemView.findViewById(R.id.product_size);
 
         }
     }
@@ -392,6 +500,18 @@ public class ProductListingFragment extends Fragment {
             //holder.tvDesc.setText(mModel.get(position).getProduct_desc());
             holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
             holder.tvDesc.setText(mModel.get(position).getProduct_id());
+            holder.spinner.setText(mModel.get(position).getProduct_size());
+            holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
 
 
             holder.rlAddtocart.setOnClickListener(new View.OnClickListener() {
@@ -399,25 +519,11 @@ public class ProductListingFragment extends Fragment {
                 public void onClick(View view) {
                     productQuantityPopUp(holder.llAddtocart,holder.rlAddtocart);
                     Log.e("","idddd"+product_id);
-
                     product_id=productList.get(position).getProduct_id();
                     product_name=productList.get(position).getProduct_name();
                     product_image=productList.get(position).getProduct_image();
                     product_price=productList.get(position).getProduct_price();
 
-                  /*  int counter=preferences.getInt("count");
-                    int totalcount=counter+1;
-                    preferences.set("count",totalcount);
-                    preferences.commit();
-
-                    ShakeAnimation(DrawerActivity.tvCount);
-                    DrawerActivity.tvCount.setText(""+totalcount);*/
-
-//                    holder.rlAddtocart.setVisibility(View.GONE);
-//                    holder.llAddtocart.setVisibility(View.VISIBLE);
-
-                /*    Vibrator vibe = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                    vibe.vibrate(100);*/
                 }
             });
 
@@ -545,7 +651,7 @@ public class ProductListingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 dialog.cancel();
-                 //llAddtocart.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -567,9 +673,6 @@ public class ProductListingFragment extends Fragment {
                                 rlLayout.setVisibility(View.GONE);
 
                                 AddtoCart(etQuantity.getText().toString());
-                                //rlAddtocart.setVisibility(View.GONE);
-                                // rlAddtocart.setVisibility(View.GONE);
-                                // holder.llAddtocart.setVisibility(View.VISIBLE);
                                 int counter=preferences.getInt("count");
                                 int totalcount=counter+1;
                                 preferences.set("count",totalcount);

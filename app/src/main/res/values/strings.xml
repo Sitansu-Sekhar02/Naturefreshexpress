@@ -26,6 +26,6 @@
     <string name="invalid_name">Please enter valid name</string>
     <string name="invalid_PhoneNumber">Please enter valid mobile number</string>
     <string name="invalid_Email">Please enter valid email</string>
-    <string name="invalid_Password">Enter seven digit password</string>
+    <string name="invalid_Password">Enter a valid password</string>
     <string name="invalid_address">Please enter address</string>
 </resources>

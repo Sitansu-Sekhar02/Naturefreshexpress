@@ -45,7 +45,6 @@ public class AdminDashActivity extends AppCompatActivity {
         addProduct = findViewById(R.id.btnProduct_add);
         categoryProduct = findViewById(R.id.btn_categoryProduct);
 
-
         //editProduct=findViewById(R.id.btnProduct_edit);
 
         notify = findViewById(R.id.notify_admin);
@@ -63,14 +62,9 @@ public class AdminDashActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //replaceFragmentWithAnimation(new AddProductFragment());
-
                 Intent i =new Intent(AdminDashActivity.this, AddCategory.class);
                 startActivity(i);
-              /*  FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction4 = fm.beginTransaction();
-                AddProductFragment admin = new AddProductFragment();
-                fragmentTransaction4.replace(R.id.container_main, admin);
-                fragmentTransaction4.commit();*/
+
             }
         });
         categoryProduct.setOnClickListener(new View.OnClickListener() {

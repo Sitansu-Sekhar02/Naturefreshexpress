@@ -3,6 +3,7 @@ package com.blucor.vsfarm.fragments;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -51,6 +52,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -69,7 +71,8 @@ public class DashboardFragment extends Fragment {
     //Tablayout
     TabLayout tabLayout;
     EditText categorySearch;
-    SearchView catSearch;
+    //SearchView catSearch;
+    EditText catSearch;
 
     //Int
     int currentPage = 0;
@@ -77,7 +80,6 @@ public class DashboardFragment extends Fragment {
     //timer
     Timer timer;
 
-    //searchView
     //SearchView searchView;
     Dialog dialog;
 
@@ -93,18 +95,14 @@ public class DashboardFragment extends Fragment {
             R.drawable.agri,
     };
 
-    public static final String JSON_URL = "http://vsfarma.blucorsys.in/category.php";
+    public static final String JSON_URL = "http://vsfastirrigation.com/webservices/category.php";
 
 
     private List<CategoryModel> categoryList;
     private ProductCategoryAdapter adapter;
     SwipeRefreshLayout refreshLayout;
 
-    //Recyclerview
     RecyclerView recyclerView;
-
-    //Arraylist
-    ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
 
 
     @Nullable
@@ -116,27 +114,34 @@ public class DashboardFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tabDots);
         recyclerView = view.findViewById(R.id.recyclerView);
         refreshLayout=view.findViewById(R.id.swipeToRefresh);
-      /*  refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+        refreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                /*refreshLayout.setRefreshing(true);
+                jsonRequest();*/
+            }
+        });
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-                        adapter.notifyDataSetChanged();
-                        refreshLayout.setRefreshing(false);
+                 //jsonRequest();
+                refreshLayout.setRefreshing(false);
             }
-        });*/
+        });
 
-        //categorySearch = view.findViewById(R.id.category_search);
         catSearch=view.findViewById(R.id.category_search);
-        catSearch.setQueryHint("Search Category");
-        catSearch .clearFocus();
-        catSearch.setFocusable(false);
-        catSearch.setFocusableInTouchMode(true);
-
+        getActivity().getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         categoryList = new ArrayList<>();
         tabLayout.setupWithViewPager(mViewPager, true);
 
-       catSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+      /* catSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
            @Override
            public boolean onQueryTextSubmit(String s) {
                return false;
@@ -147,17 +152,32 @@ public class DashboardFragment extends Fragment {
                adapter.getFilter().filter(s);
                return false;
            }
-       });
-        //Create method for Json Response(Volley)
-        //jsonRequest();
+       });*/
+        catSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                adapter.getFilter().filter(s);
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
         if (Utils.isNetworkConnectedMainThred(getActivity())) {
             jsonRequest();
             ProgressForMain();
             dialog.show();
         } else {
             Toasty.error(getActivity(), "No Internet Connection!", Toast.LENGTH_SHORT).show();
-
-           // Toast.makeText(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
         }
         //Page
         AppSettings.fromPage="1";
@@ -198,6 +218,18 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
+    private void filter(String toString) {
+        List<CategoryModel> temp = new ArrayList();
+        for(CategoryModel d: categoryList){
+            if(d.getCategory_name().toLowerCase().contains(toString.toLowerCase())){
+                temp.add(d);
+            }else{
+            }
+        }
+        //update recyclerview
+        adapter.updateList(temp);
+    }
+
 
     private void ProgressForMain() {
         dialog = new Dialog(getActivity(), android.R.style.Theme_Translucent_NoTitleBar);
@@ -213,7 +245,6 @@ public class DashboardFragment extends Fragment {
     }
 
     private void setAdapter() {
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter = new ProductCategoryAdapter(categoryList,getActivity());
@@ -221,27 +252,30 @@ public class DashboardFragment extends Fragment {
     }
 
     private void jsonRequest() {
+       //refreshLayout.setRefreshing(true);
         StringRequest request = new StringRequest(JSON_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("response1",response);
+               // refreshLayout.setRefreshing(false);
                 dialog.cancel();
                 try{
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-                        Log.e("response1",response);
+
 
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                         CategoryModel user = new CategoryModel();
 
-                        String category_id=jsonObject.getString("category_id");
+                        String category_id=jsonObject.getString("id");
                         String category_name=jsonObject.getString("category_name");
-                        String Image_url="http://vsfarma.blucorsys.in/images/"+jsonObject.getString("category_image");
+                        //String category_image=jsonObject.getString("category_image");
+                        String Image_url="http://vsfastirrigation.com/upload/cat_image/"+jsonObject.getString("category_image");
 
                        //String res= category_image.replace("//","");
                        // Log.e("responsee",""+res);
-                        //category_image.replaceAll("\\/","//");
                         user.setCategory_id(category_id);
                         user.setCategory_name(category_name);
                         user.setCategory_image(Image_url);
@@ -254,14 +288,16 @@ public class DashboardFragment extends Fragment {
                 catch (JSONException e) {
                      Log.d("JSONException", e.toString());
                 }
-            }
+                //refreshLayout.setRefreshing(false);
 
+            }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 dialog.cancel();
                 Log.e("error_response", "" + error);
+               // refreshLayout.setRefreshing(false);
 
             }
         });
@@ -270,17 +306,9 @@ public class DashboardFragment extends Fragment {
     }
 
 
-   /* public void setAdapter(RecyclerView mRecyclerview)
-    {
-        mRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        mRecyclerview.setAdapter(new ProductCategoryAdapter());
-   }*/
-
-
     //*Recyclerview Adapter*//
     private class ProductCategoryAdapter extends RecyclerView.Adapter<Holder> implements Filterable {
 
-       // ArrayList<HashMap<String, String>> data = new ArrayList<HashMap<String, String>>();
        private List<CategoryModel> category;
         private List<CategoryModel> mModel;
         private Context mContext;
@@ -318,8 +346,6 @@ public class DashboardFragment extends Fragment {
                     String id=mModel.get(position).getCategory_id();
                     Log.e("success" ,""+id);
                     Fragment fragment = new Fragment();
-
-                    //Toast.makeText(mContext, "Categories"+String.valueOf(holder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                     replaceFragmentWithAnimation(new ProductListingFragment(),id);
                 }
             });
@@ -334,30 +360,30 @@ public class DashboardFragment extends Fragment {
 
         @Override
         public Filter getFilter() {
-            return exampleFilter;
+            return filter;
         }
-        private Filter exampleFilter = new Filter() {
+        Filter filter=new Filter() {
             @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                List<CategoryModel> filteredList = new ArrayList<>();
-                if (constraint == null || constraint.length() == 0) {
-                    filteredList.addAll(category);
-                } else {
-                    String filterPattern = constraint.toString().toLowerCase().trim();
-                    for (CategoryModel item : category) {
-                        if (item.getCategory_name().toLowerCase().contains(filterPattern)) {
-                            filteredList.add(item);
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                ArrayList<CategoryModel> filteredList=new ArrayList<>();
+                if (charSequence.toString().isEmpty()){
+                    filteredList.addAll(categoryList);
+                }else {
+                    for (CategoryModel product:categoryList){
+                        if (product.getCategory_name().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                            filteredList.add(product);
                         }
                     }
                 }
-                FilterResults results = new FilterResults();
-                results.values = filteredList;
-                return results;
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=filteredList;
+                return filterResults;
             }
+
             @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                categoryList.clear();
-                categoryList.addAll((List) results.values);
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mModel.clear();
+                mModel.addAll((Collection<? extends CategoryModel>) filterResults.values);
                 notifyDataSetChanged();
             }
         };
@@ -379,7 +405,7 @@ public class DashboardFragment extends Fragment {
     public void replaceFragmentWithAnimation(Fragment fragment,String id) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putString("category_id", id);
+        bundle.putString("id", id);
         fragment.setArguments(bundle);
         transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.replace(R.id.main_fragment_container, fragment);

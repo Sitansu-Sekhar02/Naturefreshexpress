@@ -62,13 +62,6 @@ public class AddCategory extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_category);
 
-
-       /* ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("add");
-        }*/
-
         img=(ImageView)findViewById(R.id.img);
         upload=(Button)findViewById(R.id.upload);
         browse=(Button)findViewById(R.id.browse);

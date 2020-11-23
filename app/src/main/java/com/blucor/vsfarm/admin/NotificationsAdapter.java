@@ -42,6 +42,8 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.name.setText(productNames.get(position).toString());
+
+        
         holder.image.setImageResource((Integer) productImages.get(position));
         holder.price.setText(productPrice.get(position).toString());
         holder.size.setText(productSize.get(position).toString());

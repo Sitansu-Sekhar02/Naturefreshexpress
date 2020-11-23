@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
     Dialog dialog;
 
     private Button buttonRegister;
-    public static final String URL = "http://vsfarma.blucorsys.in/registration.php";
+    public static final String URL = "http://vsfastirrigation.com/webservices/registration.php";
 
     //Preferences
     Preferences preferences;
@@ -69,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.etPassword);
 
         buttonRegister = (Button) findViewById(R.id.tvRegisterButton);
+
         tvRegisterButton = findViewById(R.id.tvRegisterButton);
 
         //validate form
@@ -77,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.etContact, "[5-9]{1}[0-9]{9}$", R.string.invalid_PhoneNumber);
         awesomeValidation.addValidation(this, R.id.etEmail, Patterns.EMAIL_ADDRESS, R.string.invalid_Email);
         awesomeValidation.addValidation(this, R.id.etAddress, RegexTemplate.NOT_EMPTY, R.string.invalid_address);
-        //awesomeValidation.addValidation(this, R.id.etPassword, ".{7}", R.string.invalid_Password);
+        awesomeValidation.addValidation(this, R.id.etPassword, RegexTemplate.NOT_EMPTY, R.string.invalid_Password);
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
                         ProgressForSignup();
                         dialog.show();
                     } else {
-                        Toasty.error(SignUpActivity.this, "No Internet Connection!", Toast.LENGTH_LONG).show();
+                        Toasty.error(SignUpActivity.this,"No Internet Connection!", Toast.LENGTH_LONG).show();
                     }
                 }
                 else
@@ -129,10 +130,12 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     dialog.cancel();
+
+
                     if (response.equals(""))
                         Log.d("success", "onResponse: " + response);
-                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                    Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
+                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                     Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
                 }
             }, new Response.ErrorListener() {
                 @Override

@@ -257,7 +257,6 @@ public class AddProductToCategory extends AppCompatActivity {
                 Map<String,String> map=new HashMap<String, String>();
                 map.put("productname",name);
                 map.put("uploadProduct",encodeImageString);
-
                 map.put("productprice",price);
                 map.put("categoryId",categoryidList.get(spParent.getSelectedItemPosition()));
 

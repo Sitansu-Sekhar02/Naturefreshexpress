@@ -8,11 +8,12 @@ public class CategoryProducts {
     private  String product_image;
     private  String product_price;
     private  String product_desc;
+    private  String product_size;
 
     public CategoryProducts() {
 
     }
-    public CategoryProducts(String category_id,String product_id, String user_id,String product_name, String product_image, String product_price, String product_desc) {
+    public CategoryProducts(String category_id,String product_id, String user_id,String product_name, String product_image, String product_price, String product_desc,String product_size) {
         this.category_id = category_id;
         this.product_id = product_id;
         this.user_id=user_id;
@@ -20,6 +21,7 @@ public class CategoryProducts {
         this.product_image = product_image;
         this.product_price = product_price;
         this.product_desc = product_desc;
+        this.product_size=product_size;
     }
     public String getCategory_id() {
         return category_id;
@@ -72,5 +74,12 @@ public class CategoryProducts {
 
     public void setProduct_desc(String product_desc) {
         this.product_desc = product_desc;
+    }
+    public String getProduct_size() {
+        return product_size;
+    }
+
+    public void setProduct_size(String product_size) {
+        this.product_size = product_size;
     }
 }

@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText email, pass;
     Dialog dialog;
 
-    public static final String URL = "http://vsfarma.blucorsys.in/userlogin.php";
+    public static final String URL = "http://vsfastirrigation.com/webservices/userlogin.php";
+    public static final String forgot_password = "http://vsfastirrigation.com/webservices/forgot_password.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         tvLoginButton = findViewById(R.id.tvLoginButton);
         tvLoginButton.setOnClickListener(this);
+
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Utils.isNetworkConnectedMainThred(LoginActivity.this)) {
+                       ForgotPassword();
+
+                } else {
+                    Toasty.error(LoginActivity.this, "No Internet Connection!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         tvLoginButton.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +121,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
         });
+
+    }
+
+    private void ForgotPassword() {
+        StringRequest request = new StringRequest(Request.Method.POST, forgot_password, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.e("forgot password",response);
+
+                Toasty.normal(LoginActivity.this, "Check your Email!Password has been sent to your Email!", Toast.LENGTH_LONG).show();
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("error_response", "" + error);
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+                param.put("email",email.getText().toString());
+                return param;
+            }
+        };
+        RequestQueue requestQueue= Volley.newRequestQueue(LoginActivity.this);
+        requestQueue.add(request);
 
     }
 
@@ -206,10 +249,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         overridePendingTransition(R.anim.slide_left,R.anim.slide_right);
         break;
 
-      /*  case R.id.tvForgotPassword:
-            startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
-            overridePendingTransition(R.anim.slide_left,R.anim.slide_right);
-            break; */
         }
     }
 }

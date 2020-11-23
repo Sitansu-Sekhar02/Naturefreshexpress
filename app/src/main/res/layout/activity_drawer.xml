@@ -27,7 +27,7 @@
             android:layout_gravity="bottom"
             android:textSize="@dimen/_12sdp"
             android:gravity="center"
-            android:textColor="#048EDA"
+            android:textColor="#023704"
             android:text="Powered by @BluCorSys Pvt.Ltd." />
 
     </com.google.android.material.navigation.NavigationView>

@@ -33,7 +33,7 @@ public class OrderConfirmationFragment extends Fragment {
 
     //Textview
     TextView tvViewOrder;
-    TextView orderNumber,purchaseDate,billingMail;
+    TextView orderNumber,purchaseDate,billingMail,tvOrderTotal;
     Preferences preferences;
 
 
@@ -47,12 +47,13 @@ public class OrderConfirmationFragment extends Fragment {
         orderNumber=v.findViewById(R.id.tvOrderNumber);
         purchaseDate=v.findViewById(R.id.tvDate);
         billingMail=v.findViewById(R.id.tvEmail);
+        tvOrderTotal=v.findViewById(R.id.tvOrderTotal);
 
         preferences=new Preferences(getActivity());
         orderNumber.setText(preferences.get("order_id"));
-        purchaseDate.setText(preferences.get("order_date_month"));
+        purchaseDate.setText(preferences.get("order_date"));
         billingMail.setText(preferences.get("useremail"));
-
+        tvOrderTotal.setText(preferences.get("order_total"));
 
         DrawerActivity.tvHeaderText.setText("Order Confirmation");
         DrawerActivity.iv_menu.setImageResource(R.drawable.ic_back);

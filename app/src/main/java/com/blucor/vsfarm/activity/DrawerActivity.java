@@ -139,7 +139,6 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         transaction.commit();
     }
 
-
     @Override
     public void onClick(View view) {
 
@@ -172,7 +171,15 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
             replaceFragmentWithAnimation(new AboutUsFragment());
         }
         else if (id == R.id.share) {
-            replaceFragmentWithAnimation(new ShareFragment());
+            Intent shareIntent =   new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            String shareBody="Your body here";
+            String subject="Your subject here";
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT,subject);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+            String app_url = "https://play.google.com/store/apps/details?id=com.blucor.vsfarm";
+            shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,app_url);
+            startActivity(Intent.createChooser(shareIntent, "Share via"));
         }
         else if (id == R.id.logout) {
             logout();

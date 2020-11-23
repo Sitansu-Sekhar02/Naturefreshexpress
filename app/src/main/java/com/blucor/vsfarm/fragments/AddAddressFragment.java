@@ -44,7 +44,7 @@ import es.dmoral.toasty.Toasty;
 
 public class AddAddressFragment extends Fragment {
 
-    public static final String update_address="http://vsfarma.blucorsys.in/updateuser_details.php";
+    public static final String update_address="http://vsfastirrigation.com/webservices/updateuser_details.php";
     EditText EdName,EdContact,EdAddress;
     Button btnSave;
     Preferences preferences;

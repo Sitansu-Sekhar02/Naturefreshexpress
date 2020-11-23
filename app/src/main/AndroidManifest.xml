@@ -16,6 +16,7 @@
         android:icon="@drawable/vslogo"
         android:label="@string/app_name"
         android:largeHeap="true"
+
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/vslogo"
         android:supportsRtl="true"

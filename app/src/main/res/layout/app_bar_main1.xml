@@ -11,7 +11,7 @@
         android:id="@+id/rr_header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
-        android:background="@color/gradient_background">
+        android:background="@drawable/gradient_bg">
 
         <ImageView
             android:id="@+id/iv_menu"
@@ -132,42 +132,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-          <!--  <ImageView
-                android:id="@+id/ivSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_10sdp"
-                app:srcCompat="@drawable/search1"
-                tools:ignore="VectorDrawableCompat"
-                app:tint="@color/black_trans" />
-
-            <com.blucor.vsfarm.customecomponent.CustomEdittext
-                style="@style/general_edittext_style"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_toRightOf="@+id/ivSearch"
-                android:background="@null"
-                android:hint="@string/search_for_products"
-                android:textSize="@dimen/_12sdp"
-                app:font_name="NunitoRegular.ttf"
-
-                />-->
 
         </RelativeLayout>
     </RelativeLayout>
 
 
     <include layout="@layout/content_main" />
-    <!-- <android.support.design.widget.FloatingActionButton
-         android:id="@+id/fab"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="bottom|end"
-         android:layout_margin="@dimen/fab_margin"
-         app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
 </LinearLayout>

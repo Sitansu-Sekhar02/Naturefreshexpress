@@ -8,7 +8,6 @@ public class OrderDetails {
     private  String product_quantity;
     private  String order_id;
     private  String product_price;
-
     private  String order_date_month;
 
     public OrderDetails() {

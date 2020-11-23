@@ -63,18 +63,16 @@ public class CheckoutFragment extends Fragment {
 
     private List<CartItem> cartList;
     private CartAdapter cartAdapter;
-    public static final String cart_url = "http://vsfarma.blucorsys.in/fetchCartItem.php";
-    public static final String cart_delete = "http://vsfarma.blucorsys.in/deleteCartItem.php";
-    public static final String continue_order = "http://vsfarma.blucorsys.in/checkout_order.php";
-    public static final String order_billling = "http://vsfarma.blucorsys.in/order_billing.php";
-
+    public static final String cart_url = "http://vsfastirrigation.com/webservices/fetchCartItem.php";
+    public static final String cart_delete = "http://vsfastirrigation.com/webservices/deleteCartItem.php";
+    public static final String continue_order = "http://vsfastirrigation.com/webservices/checkout_order.php";
 
 
     int final_price= 0;
     String product_id;
     //Gridlayoutmanger
     GridLayoutManager mGridLayoutManager;
-    int result;
+    int result=0;
     int Total_price=0;
 
     //Textview
@@ -122,10 +120,6 @@ public class CheckoutFragment extends Fragment {
         UserAddress.setText(preferences.get("address"));
 
 
-       //setadapter
-    /*    mGridLayoutManager = new GridLayoutManager(getActivity(), 1);
-        recyclerview.setLayoutManager(mGridLayoutManager);
-        recyclerview.setAdapter(new CartAdapter());*/
         DrawerActivity.ivCart.setVisibility(View.GONE);
         DrawerActivity.tvCount.setVisibility(View.GONE);
 
@@ -154,10 +148,8 @@ public class CheckoutFragment extends Fragment {
 
                 if (Utils.isNetworkConnectedMainThred(getActivity())) {
                      OrderConfirm();
-                     BillingMail();
                      SuccessPopup();
-
-                    dialog.show();
+                     dialog.show();
                 } else {
                     Toasty.error(getActivity(), "No Internet Connection!", Toast.LENGTH_SHORT).show();
                 }
@@ -173,33 +165,6 @@ public class CheckoutFragment extends Fragment {
        });
 
         return v;
-    }
-
-    private void BillingMail() {
-        StringRequest request = new StringRequest(Request.Method.POST,order_billling, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("Mail send",response);
-
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Log.e("error_response", "" + error);
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parameters = new HashMap<String, String>();
-                parameters.put("user_id",preferences.get("user_id"));
-                return parameters;
-            }
-        };
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
-        requestQueue.add(request);
-
     }
 
     private void ProgressForCheckout() {
@@ -227,15 +192,14 @@ public class CheckoutFragment extends Fragment {
                     if(jsonObject.getString("success").equalsIgnoreCase("order placed successfully"))
                     {
                         preferences.set("order_id",jsonObject.getString("order_id"));
-                        preferences.set("order_date_month",jsonObject.getString("order_date_month"));
+                        preferences.set("order_date",jsonObject.getString("order_date"));
+                        preferences.set("order_total",jsonObject.getString("order_total"));
                         preferences.commit();
                     }
-                    //replaceFragmentWithAnimation(new CheckoutFragment());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
 
         }, new Response.ErrorListener() {
@@ -249,11 +213,9 @@ public class CheckoutFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("user_id",preferences.get("user_id"));
-              /*  parameters.put("product_id",);
-                parameters.put("product_name",);
-                parameters.put("product_price",);
-                parameters.put("product_quantity",);
-                parameters.put("order_total",);*/
+                parameters.put("order_total", String.valueOf(Total_price));
+                parameters.put("subtotal", String.valueOf(result));
+
                 Log.e("check","wwww"+parameters);
                 return parameters;
             }
@@ -268,8 +230,8 @@ public class CheckoutFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 dialog.cancel();
+                Log.e("checkout",response);
                 try{
-                    Log.e("checkout",response);
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -282,7 +244,6 @@ public class CheckoutFragment extends Fragment {
                         String product_price=jsonObject.getString("product_price");
                         String product_image=jsonObject.getString("product_image");
                         String product_qnty=jsonObject.getString("product_quantity");
-
 
                         String res= product_image.replace("//","");
                         //Log.e("responsee",""+res);
@@ -299,16 +260,13 @@ public class CheckoutFragment extends Fragment {
                         int price=Integer.parseInt(product_price);
                         int qty=Integer.parseInt(product_qnty);
 
-                        //Total_price = Total_price + Integer.parseInt(product_price*product_qnty);
                         Total_price = Total_price + ( price* qty);
-                        //final_price = final_price + Integer.parseInt(cartList.get(i).getProduct_price());
                         Log.e("price add",""+Total_price);
                         checkoutPrice.setText(String.valueOf( Total_price));
                         checkoutPrice.setText("Total Amount \u20b9" +Total_price);
                         Log.e("total price","price"+Total_price);
 
                     }
-                   // totalAmount.setText("Pay \u20b9" +final_price);
                     totalAmount.setText("\u20b9 " +Total_price);
 
                     setAdapter();
@@ -316,13 +274,7 @@ public class CheckoutFragment extends Fragment {
                 catch (JSONException e) {
                     Log.d("JSONException", e.toString());
                 }
-               /* if (cartList.isEmpty()){
-                    llcartItem.setVisibility(View.GONE);
-                    emptyCart.setVisibility(View.VISIBLE);
-                } else {
-                    llcartItem.setVisibility(View.VISIBLE);
-                    emptyCart.setVisibility(View.GONE);
-                }*/
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -335,6 +287,8 @@ public class CheckoutFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("user_id",preferences.get("user_id"));
+
+
                 return parameters;
             }
         };
@@ -453,6 +407,8 @@ public class CheckoutFragment extends Fragment {
             String productQnty= String.valueOf(holder.productQuantity.getText());
 
             holder.checkquantity.setVisibility(View.GONE);
+
+            //calculate product price with qnty
             int productprice;
             int qnty;
             productprice = Integer.parseInt(mModel.get(position).getProduct_price());
@@ -460,8 +416,9 @@ public class CheckoutFragment extends Fragment {
             result=productprice*qnty;
             Log.e("result",""+result);
             holder.qntyPrice.setText("\u20b9" +result);
-            holder.cart_quant_add.setOnClickListener(new View.OnClickListener() {
 
+
+            holder.cart_quant_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int count = Integer.parseInt(holder.cart_item_number.getText().toString());
@@ -492,7 +449,6 @@ public class CheckoutFragment extends Fragment {
                 public void onClick(View view) {
                     if (Utils.isNetworkConnectedMainThred(getActivity())) {
                         deleteCartItem();
-                        //ProgressForChe();
                         dialog.show();
                     } else {
                         Toasty.error(getActivity(), "No Internet Connection!", Toast.LENGTH_SHORT).show();

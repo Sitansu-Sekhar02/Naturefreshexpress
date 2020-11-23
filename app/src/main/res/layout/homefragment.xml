@@ -5,37 +5,47 @@
     android:id="@+id/swipeToRefresh"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:id="@+id/lnr"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <androidx.appcompat.widget.SearchView
-                android:visibility="gone"
+
+            <RelativeLayout
                 android:background="@drawable/capsule"
-                android:layout_width="match_parent"
-                app:iconifiedByDefault="false"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
-                app:queryHint="Search category..."
-                android:layout_height="@dimen/_35sdp"/>
-            <SearchView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp">
+                <EditText
+                    android:id="@+id/category_search"
+                    android:layout_width="match_parent"
+                    android:drawableLeft="@drawable/ic_search_24"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:hint="Search Category..."
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:iconifiedByDefault="false"
+                    android:layout_alignParentTop="true" />
+            </RelativeLayout>
+
+          <!--  <SearchView
                 android:id="@+id/category_search"
-                android:background="@drawable/capsule"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
-                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:hint="Search Category..."
-                android:drawablePadding="@dimen/_5sdp"
-                android:layout_alignParentTop="true" />
+                android:layout_marginRight="@dimen/_10sdp"
+                android:iconifiedByDefault="true"
+                android:background="@drawable/capsule"
+                android:drawablePadding="@dimen/_5sdp" />-->
 
             <FrameLayout
                 android:background="@drawable/button_border"

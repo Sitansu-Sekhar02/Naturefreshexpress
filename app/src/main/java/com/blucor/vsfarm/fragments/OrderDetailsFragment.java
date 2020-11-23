@@ -54,7 +54,7 @@ public class OrderDetailsFragment extends Fragment {
         Bundle b = getArguments();
         String order_id = b.getString("order_id");
         String order_name=b.getString("product_name");
-        String order_date=b.getString("order_date_month");
+        String order_date=b.getString("order_date");
         String order_qnty=b.getString("product_quantity");
         String product_price=b.getString("product_price");
 

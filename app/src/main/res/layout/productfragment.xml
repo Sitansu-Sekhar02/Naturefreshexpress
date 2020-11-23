@@ -19,6 +19,9 @@
                 android:layout_width="match_parent"
                 android:drawableLeft="@drawable/ic_search_24"
                 android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:singleLine="true"
                 android:hint="Search products..."
                 android:drawablePadding="@dimen/_5sdp"
                 android:iconifiedByDefault="false"
@@ -29,6 +32,7 @@
         android:id="@+id/productRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_5sdp"
         android:layout_marginRight="@dimen/_5sdp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

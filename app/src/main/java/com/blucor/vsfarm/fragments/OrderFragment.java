@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.Gravity;
@@ -61,7 +62,7 @@ public class OrderFragment extends Fragment {
 
     //GridLayoutManger
     GridLayoutManager mGridLayoutManager;
-    public static final String order_details = "http://vsfarma.blucorsys.in/fetch_UserOrderDetails.php";
+    public static final String order_details = "http://vsfastirrigation.com/webservices/fetch_UserOrderDetails.php";
     private List<OrderDetails> userOrderList;
     OrderAdapter adapter;
     //Recycler
@@ -71,6 +72,7 @@ public class OrderFragment extends Fragment {
     LinearLayout llcartItem;
     LinearLayout empty;
     Button shopNow;
+    SwipeRefreshLayout refresh;
 
 
     @Override
@@ -110,7 +112,7 @@ public class OrderFragment extends Fragment {
             UserOrderDetails();
         } else {
 
-            Toasty.error(getActivity(), "No Internet Connection!", Toast.LENGTH_SHORT).show();
+            Toasty.error(getActivity(),"No Internet Connection!", Toast.LENGTH_SHORT).show();
         }
         return v;
     }
@@ -144,14 +146,14 @@ public class OrderFragment extends Fragment {
 
                         OrderDetails order = new OrderDetails();
                         String user_id=jsonObject.getString("user_id");
+                        String order_id=jsonObject.getString("order_id");
                         String product_id=jsonObject.getString("product_id");
                         String product_name=jsonObject.getString("product_name");
                         String product_quantity=jsonObject.getString("product_quantity");
-                        String order_date_month=jsonObject.getString("order_date_month");
+                        String order_date_month=jsonObject.getString("order_date");
                         String product_price=jsonObject.getString("product_price");
 
-                        String order_id=jsonObject.getString("order_id");
-                        String product_image="http://vsfarma.blucorsys.in/productimages/"+jsonObject.getString("product_image");
+                        //String product_image="http://vsfastirrigation.com/upload/cat_image/"+jsonObject.getString("product_image");
 
                         order.setUser_id(user_id);
                         order.setProduct_id(product_id);
@@ -159,7 +161,7 @@ public class OrderFragment extends Fragment {
                         order.setProduct_quantity(product_quantity);
                         order.setOrder_date_month(order_date_month);
                         order.setOrder_id(order_id);
-                        order.setProduct_image(product_image);
+                        //order.setProduct_image(product_image);
                         order.setProduct_price(product_price);
 
                         userOrderList.add(order);
@@ -213,10 +215,9 @@ public class OrderFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putString("order_id",order_id);
         bundle.putString("product_name",order_name);
-        bundle.putString("order_date_month",order_date);
+        bundle.putString("order_date",order_date);
         bundle.putString("product_quantity",order_qnty);
         bundle.putString("product_price",product_price);
-
 
         //bundle.putString("order_date_month",);
         fragment.setArguments(bundle);
@@ -233,7 +234,6 @@ public class OrderFragment extends Fragment {
 
         public Holder(View itemView) {
             super(itemView);
-
 
             llMain = itemView.findViewById(R.id.llMain);
             qnty = itemView.findViewById(R.id.tvQty);

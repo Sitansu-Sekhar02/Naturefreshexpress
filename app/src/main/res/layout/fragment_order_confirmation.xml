@@ -236,6 +236,32 @@
                         android:gravity="center_horizontal"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
+                        android:text="Order Total:"
+                        android:textColor="@color/grey_900"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoRegular.ttf" />
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/tvOrderTotal"
+                        android:text="2300"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:font_name="NunitoSemiBold.ttf" />
+                </LinearLayout>
+                <LinearLayout
+                    android:weightSum="2"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_weight="1"
                         android:text="Payment Method:"
                         android:textColor="@color/grey_900"
                         android:textSize="@dimen/_12sdp"

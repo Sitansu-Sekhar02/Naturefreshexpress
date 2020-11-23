@@ -80,9 +80,9 @@ public class CartFragment extends Fragment {
 
     private List<CartItem> cartList;
     private CartAdapter cartAdapter;
-    public static final String cart_url = "http://vsfarma.blucorsys.in/fetchCartItem.php";
-    public static final String cart_delete = "http://vsfarma.blucorsys.in/deleteCartItem.php";
-    public  static  final  String qnty_update="http://vsfarma.blucorsys.in/update_quantity.php";
+    public static final String cart_url = "http://vsfastirrigation.com/webservices/fetchCartItem.php";
+    public static final String cart_delete = "http://vsfastirrigation.com/webservices/deleteCartItem.php";
+    public  static  final  String qnty_update="http://vsfastirrigation.com/webservices/update_quantity.php";
 
 
     //Gridlayout
@@ -155,7 +155,6 @@ public class CartFragment extends Fragment {
             public void onClick(View view) {
 
                 replaceFragmentWithAnimation(new DashboardFragment());
-
             }
         });
         if (Utils.isNetworkConnectedMainThred(getActivity())) {
@@ -168,23 +167,6 @@ public class CartFragment extends Fragment {
 
         }
 
-
-       /* if (Utils.isNetworkConnectedMainThred(getActivity())) {
-
-            ProgressForDelete();
-            progressDialog.show();
-        } else {
-            Toast.makeText(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
-        }*/
-
-       /* if (cartList.isEmpty()) {
-            recyclerView.setVisibility(View.GONE);
-            emptyCart.setVisibility(View.VISIBLE);
-        }
-        else {
-            recyclerView.setVisibility(View.VISIBLE);
-            emptyCart.setVisibility(View.GONE);
-        }*/
         tvProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -204,10 +186,10 @@ public class CartFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 dialog.cancel();
-
+                Log.e("cart",response);
                 //progressDialog.cancel();
                 try{
-                    Log.e("cart",response);
+
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -237,14 +219,12 @@ public class CartFragment extends Fragment {
                         int price=Integer.parseInt(product_price);
                         int qty=Integer.parseInt(product_qnty);
 
-                       //Total_price = Total_price + Integer.parseInt(product_price*product_qnty);
                         Total_price = Total_price + ( price* qty);
-                        //final_price = final_price + Integer.parseInt(cartList.get(i).getProduct_price());
                         Log.e("price add",""+Total_price);
                         tvCartPrice.setText(String.valueOf( Total_price));
                         tvCartPrice.setText("Total Amount \u20b9" +Total_price);
                         Log.e("total price","price"+Total_price);
-                        //int price=product_price*product_quantity;
+
                     }
 
                     setAdapter();
@@ -374,17 +354,7 @@ public class CartFragment extends Fragment {
                         cart_id=cartList.get(position).getCart_id();
                         Log.e("qnty","rrr"+productQnty);
                         Log.e("id","cart no"+cart_id);
-
                     }
-
-                    //not null
-                    //EditText productQntyt=view.findViewById(R.id.quantity);
-                   /* if (productQuantity.getText().toString().trim().length() == 0) {
-                        productQuantity.setError("Please enter value ");
-                    } else {
-
-                        UpdateQnty(productQnty);
-                    }*/
                 }
             });
 
@@ -493,9 +463,6 @@ public class CartFragment extends Fragment {
         requestQueue.add(request);
     }
 
-    private void productQuantityPopUp() {
-
-    }
 
     private void ProgressForCart() {
         dialog = new Dialog(getActivity(), android.R.style.Theme_Translucent_NoTitleBar);
