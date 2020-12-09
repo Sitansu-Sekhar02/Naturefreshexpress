@@ -8,12 +8,14 @@ public class OrderDetails {
     private  String product_quantity;
     private  String order_id;
     private  String product_price;
+    private  String product_size;
+
     private  String order_date_month;
 
     public OrderDetails() {
     }
 
-    public OrderDetails(String user_id, String product_id, String product_name,String product_image, String product_quantity, String order_date_month,String order_id,String product_price) {
+    public OrderDetails(String user_id, String product_id, String product_name,String product_image, String product_quantity, String order_date_month,String order_id,String product_price,String product_size) {
         this.user_id = user_id;
         this.product_id = product_id;
         this.product_name = product_name;
@@ -21,7 +23,10 @@ public class OrderDetails {
         this.product_quantity = product_quantity;
         this.order_date_month = order_date_month;
         this.order_id=order_id;
+
         this.product_price=product_price;
+        this.product_size=product_size;
+
     }
 
     public String getUser_id() {
@@ -83,4 +88,11 @@ public class OrderDetails {
         return product_price;
     }
 
+    public String getProduct_size() {
+        return product_size;
+    }
+
+    public void setProduct_size(String product_size) {
+        this.product_size = product_size;
+    }
 }

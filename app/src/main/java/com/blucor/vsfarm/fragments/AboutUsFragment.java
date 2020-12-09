@@ -52,7 +52,7 @@ public class AboutUsFragment extends Fragment {
         WebView mywebview = (WebView)view. findViewById(R.id.webView);
         ProgressDialog();
         mywebview.setWebViewClient(new WebViewClient());
-        mywebview.loadUrl("http://farma.blucorsys.com/about-us/");
+        mywebview.loadUrl("https://vsfastirrigation.com/welcome/aboutus");
         DrawerActivity.rlsearchview.setVisibility(View.GONE);
         DrawerActivity.marquee.setVisibility(View.GONE);
         DrawerActivity.tvHeaderText.setText("About Us");

@@ -1,7 +1,5 @@
 package com.blucor.vsfarm.activity;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,7 +16,6 @@ import com.blucor.vsfarm.fragments.AboutUsFragment;
 import com.blucor.vsfarm.fragments.CartFragment;
 import com.blucor.vsfarm.fragments.DashboardFragment;
 import com.blucor.vsfarm.fragments.OrderFragment;
-import com.blucor.vsfarm.fragments.ShareFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.fragment.app.Fragment;
@@ -29,9 +26,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.FileUtils;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,12 +34,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.HashMap;
 
 
 public class DrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -89,6 +81,16 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
         marquee.setSelected(true);
 
 
+        /*//View headerView = navigationView.getHeaderView(0);
+        View headerView= navigationView.inflateHeaderView(R.layout.nav_header_main1);
+
+        TextView navUsername = (TextView) headerView.findViewById(R.id.userName);
+        TextView contact = (TextView) headerView.findViewById(R.id.userContact);
+
+        navUsername.setText(preferences.get("user"));
+        contact.setText(preferences.get("contact"));*/
+
+
         Intialize();
 
         //Setvalue
@@ -100,6 +102,8 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
        // setvalue
         tvCount.setText(String.valueOf(preferences.getInt("count")));
+
+
 
 //        tvCount = findViewById(R.id.tvCount);
 //        ivHome = findViewById(R.id.ivHome);
@@ -213,6 +217,24 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
         //navigationview
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+
+                navigationView.removeOnLayoutChangeListener( this );
+
+                TextView tvUsername = (TextView) navigationView.findViewById(R.id.NavuserName);
+                TextView tvUserContact = (TextView) navigationView.findViewById(R.id.NavuserContact);
+
+                tvUsername.setText(preferences.get("name"));
+                tvUserContact.setText(preferences.get("contact"));
+
+            }
+        });
+
+
+
+
 
         //pref
         preferences=new Preferences(this) ;

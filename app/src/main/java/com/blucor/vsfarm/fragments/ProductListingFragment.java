@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -31,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,11 +58,8 @@ import com.blucor.vsfarm.Model.CategoryProducts;
 import com.blucor.vsfarm.R;
 import com.blucor.vsfarm.activity.DrawerActivity;
 import com.blucor.vsfarm.activity.Utils;
-import com.blucor.vsfarm.extra.AppSettings;
 import com.blucor.vsfarm.extra.Preferences;
 import com.bumptech.glide.Glide;
-import com.google.android.material.snackbar.Snackbar;
-import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,11 +82,14 @@ public class ProductListingFragment extends Fragment {
 
     //recyclerview
     RecyclerView recyclerView;
-    String  product_id;
-    String  user_id;
-    String  product_name;
-    String  product_image;
-    String  product_price;
+    String product_id;
+    String user_id;
+    String product_name;
+    String product_image;
+    String product_price;
+    String product_size;
+
+
     String product_qnty;
     EditText prodcutQnty;
 
@@ -111,7 +113,12 @@ public class ProductListingFragment extends Fragment {
     public static final String url = "http://vsfastirrigation.com/webservices/getrow.php";
 
     private List<CategoryProducts> productList;
-    private  List<CartItem> cartItem;
+    private List<CategoryProducts> list;
+    private List<CategoryProducts> spinnerlist;
+
+    private List<CartItem> cartItem;
+    int spinner_count;
+
 
     //Arraylist
     ArrayList<HashMap<String, String>> arrayList = new ArrayList<>();
@@ -132,20 +139,21 @@ public class ProductListingFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.productRecyclerView);
 
-        searchView=view.findViewById(R.id.EdSearchView);
-        noProduct=view.findViewById(R.id.no_product);
-      // prodcutQnty=view.findViewById(R.id.etQuantity);
+        searchView = view.findViewById(R.id.EdSearchView);
+        noProduct = view.findViewById(R.id.no_product);
+        // prodcutQnty=view.findViewById(R.id.etQuantity);
 
-        Log.e("data",""+getArguments().getString("id"));
+        Log.e("data", "" + getArguments().getString("id"));
 
-        productList=new ArrayList<>();
-        cartItem=new ArrayList<>();
+        productList = new ArrayList<>();
+        cartItem = new ArrayList<>();
+        list = new ArrayList<>();
 
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                 mAdapter.getFilter().filter(s);
+                mAdapter.getFilter().filter(s);
 
                 // TODO Auto-generated method stub
             }
@@ -176,7 +184,7 @@ public class ProductListingFragment extends Fragment {
 
 
 //        tvHeaderText = view.findViewById(R.id.tvHeaderText);
-        preferences=new Preferences(getActivity());
+        preferences = new Preferences(getActivity());
 
         //page
         //AppSettings.fromPage="2";
@@ -242,10 +250,10 @@ public class ProductListingFragment extends Fragment {
 
     private void filter(String toString) {
         List<CategoryProducts> temp = new ArrayList();
-        for(CategoryProducts d: productList){
-            if(d.getProduct_name().toLowerCase().contains(toString.toLowerCase())){
+        for (CategoryProducts d : productList) {
+            if (d.getProduct_name().toLowerCase().contains(toString.toLowerCase())) {
                 temp.add(d);
-            }else{
+            } else {
                 //noProduct.setVisibility(View.VISIBLE);
                 //Toast.makeText(getActivity(),"No Product Found",Toast.LENGTH_SHORT).show();
             }
@@ -260,110 +268,48 @@ public class ProductListingFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 dialog.cancel();
-                Log.e("response",response);
+                Log.e("response", response);
                 try {
-                    JSONObject jsonObject=new JSONObject(response);
-                    if(jsonObject.getString("success").equalsIgnoreCase("true")) {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getString("success").equalsIgnoreCase("true")) {
                         JSONArray jsonArray = jsonObject.getJSONArray("Product");
                         for (int i = 0; i < jsonArray.length(); i++) {
 
-
                             JSONObject Object = jsonArray.getJSONObject(i);
+                            //model class
                             CategoryProducts product = new CategoryProducts();
-                            String product_id=Object.getString("id");
-                            String product_name=Object.getString("product_name");
-                            String product_image="http://vsfastirrigation.com/upload/cat_image/"+Object.getString("product_image");
-                          /*  if (jsonArray.getString(("SizeArray")).equalsIgnoreCase("")){
+                            String product_id = Object.getString("id");
+                            String product_name = Object.getString("product_name");
+                            String product_image = "http://vsfastirrigation.com/upload/cat_image/" + Object.getString("product_image");
+                            JSONArray array = Object.getJSONArray("SizeArray");
+                            Log.e("a", "jsonarrayresponse" + array);
+                            /* for(int j=0;j<array.length();j++){
+                                 JSONObject jsonObject1=array.getJSONObject(j);
+                                 Log.e("array","jsonarray"+jsonObject1);
+                                 String product_size=jsonObject1.getString("size");
+                                 String product_price=jsonObject1.getString("product_price");
 
-                                String product_price=Object.getString(("product_price"));
-                                String product_size=Object.getString(("product_size"));
-
-                            }*/
-
+                                 product.setProduct_size(product_size);
+                                 product.setProduct_price(product_price);
+                                 //product.setProduct_desc(product_desc);
 
 
+                             }*/
+                            product.setArray(array);
                             product.setProduct_id(product_id);
                             product.setProduct_name(product_name);
                             product.setProduct_image(product_image);
-//                            product.setProduct_price(product_price);
-//                            product.setProduct_size(product_size);
-
-                            //product.setProduct_desc(product_desc);
-
                             productList.add(product);
 
 
                         }
+                        setAdapter();
 
                     }
-
-
-
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
-
-                /*try {
-                    JSONObject jsonObject=new JSONObject(response);
-                    if(jsonObject.getString("success").equalsIgnoreCase("true")){
-                        JSONArray jsonArray=jsonObject.getJSONArray("Product");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            JSONObject object = jsonArray.getJSONObject(i);
-                            CategoryProducts product = new CategoryProducts();
-                            String category_id=object.getString("cat_id");
-                            String product_id=object.getString("id");
-                            String product_name=object.getString("product_name");
-                            String product_image="http://vsfastirrigation.com/upload/cat_image/"+object.getString("product_image");
-                            JSONArray array=jsonObject.getJSONArray("SizeArray");
-
-                            String product_price=array.getString(Integer.parseInt("product_price"));
-                            String product_size=array.getString(Integer.parseInt("product_size"));
-
-
-
-                            product.setCategory_id(category_id);
-                            product.setProduct_id(product_id);
-                            product.setProduct_name(product_name);
-                            product.setProduct_image(product_image);
-                            product.setProduct_price(product_price);
-                            product.setProduct_size(product_size);
-
-
-                            //product.setProduct_desc(product_desc);
-
-                            productList.add(product);
-
-                    }
-
-
-
-
-
-
-
-                    }
-
-
-
-
-
-
-
-
-
-
-                        setAdapter();
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
 
 
               /*  try{
@@ -411,17 +357,17 @@ public class ProductListingFragment extends Fragment {
                 Log.e("error_response", "" + error);
 
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
-                parameters.put("cat_id",getArguments().getString("id"));
+                parameters.put("cat_id", getArguments().getString("id"));
 
-             // parameters.put("cat_id","4");
+                // parameters.put("cat_id","4");
                 return parameters;
             }
         };
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(request);
     }
 
@@ -433,7 +379,7 @@ public class ProductListingFragment extends Fragment {
         TextView tvQty;
         TextView cart_item_number;
         ImageView ivProductimage;
-        MaterialBetterSpinner spinner;
+        Spinner spinner;
 
         ImageButton cart_quant_minus;
         ImageButton cart_quant_add;
@@ -448,39 +394,43 @@ public class ProductListingFragment extends Fragment {
         public Holder(View itemView) {
             super(itemView);
 
-            ivProductimage=itemView.findViewById(R.id.ivProductimage);
-            tvQty=itemView.findViewById(R.id.tvQty);
-            cart_item_number=itemView.findViewById(R.id.cart_item_number);
-            tvProductName=itemView.findViewById(R.id.tvProductName);
-            tvFinalprice=itemView.findViewById(R.id.tvFinalprice);
-            tvDesc=itemView.findViewById(R.id.desc);
-            rlAddtocart=itemView.findViewById(R.id.rlAddtocart);
-            rlOutofstock=itemView.findViewById(R.id.rlOutofstock);
-            cardView=itemView.findViewById(R.id.cardView);
-            llAddtocart=itemView.findViewById(R.id.llAddtocart);
-            cart_quant_minus=itemView.findViewById(R.id.cart_quant_minus);
-            cart_quant_add=itemView.findViewById(R.id.cart_quant_add);
-            spinner=itemView.findViewById(R.id.product_size);
+            ivProductimage = itemView.findViewById(R.id.ivProductimage);
+            tvQty = itemView.findViewById(R.id.tvQty);
+            cart_item_number = itemView.findViewById(R.id.cart_item_number);
+            tvProductName = itemView.findViewById(R.id.tvProductName);
+            tvFinalprice = itemView.findViewById(R.id.tvFinalprice);
+            tvDesc = itemView.findViewById(R.id.desc);
+            rlAddtocart = itemView.findViewById(R.id.rlAddtocart);
+            rlOutofstock = itemView.findViewById(R.id.rlOutofstock);
+            cardView = itemView.findViewById(R.id.cardView);
+            llAddtocart = itemView.findViewById(R.id.llAddtocart);
+            cart_quant_minus = itemView.findViewById(R.id.cart_quant_minus);
+            cart_quant_add = itemView.findViewById(R.id.cart_quant_add);
+            spinner = itemView.findViewById(R.id.product_size);
 
         }
     }
+
     private void setAdapter() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new ProductAdapter(productList,getActivity());
+        mAdapter = new ProductAdapter(productList, getActivity());
         recyclerView.setAdapter(mAdapter);
     }
+
     private class ProductAdapter extends RecyclerView.Adapter<Holder> implements Filterable {
+        //private ArrayAdapter<ProductAdapter> dataAdapter;
 
         private List<CategoryProducts> mModel;
         private Context mContext;
 
-        public ProductAdapter(List<CategoryProducts>mModel, Context mContext) {
-            this.mModel=mModel;
-            this.mContext=mContext;
+        public ProductAdapter(List<CategoryProducts> mModel, Context mContext) {
+            this.mModel = mModel;
+            this.mContext = mContext;
 
         }
-        public void updateList(List<CategoryProducts> list){
+
+        public void updateList(List<CategoryProducts> list) {
             mModel = list;
             notifyDataSetChanged();
         }
@@ -492,18 +442,96 @@ public class ProductListingFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull final Holder holder, final int position) {
+            //CategoryProducts cat_product = list.get(position);
 
             holder.tvProductName.setText(mModel.get(position).getProduct_name());
             Glide.with(mContext)
                     .load(mModel.get(position).getProduct_image())
                     .into(holder.ivProductimage);
             //holder.tvDesc.setText(mModel.get(position).getProduct_desc());
-            holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
+            // holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
             holder.tvDesc.setText(mModel.get(position).getProduct_id());
-            holder.spinner.setText(mModel.get(position).getProduct_size());
+            //
+            Log.e("arraya", "" + mModel.get(position).getArray());
+           /* holder.tvFinalprice.setText(list.get(position).getProduct_price());
+            Log.e("pricess",""+list.get(position).getProduct_price());*/
+
+            //JSONArray jsonArray = null;
+            //getMatch newItemObject = null;
+            JSONArray jsonArray = mModel.get(position).getArray();
+            /*HashMap<String,String> map;
+            arrayList.clear();*/
+            //productList.clear();
+            for (int j = 0; j < jsonArray.length(); j++) {
+
+                try {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(j);
+                    CategoryProducts products = new CategoryProducts();
+                    Log.e("array", "jsonarray" + jsonObject1);
+                    // map=new HashMap<>();
+                    String product_size = jsonObject1.getString("product_size");
+                    String product_price = jsonObject1.getString("product_price");
+                    Log.e("sizes", "" + product_size);
+                    Log.e("prices", "" + product_price);
+                    products.setProduct_price(product_price);
+                    products.setProduct_size(product_size);
+
+                    list.add(products);
+                   /* map.put("product_size",product_size);
+                    map.put("product_price",product_price);
+                    arrayList.add(map);*/
+                      /*  dataAdapter = new ArrayAdapter<ProductAdapter>(mContext,
+                                android.R.layout.simple_spinner_item, ProductAdapter.());
+                        // Drop down layout style - list view with radio button
+                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
+                    // holder.spinner.setAdapter(new SpinnerAdapter(getContext(),R.layout.spinner_layout,productList));
+                   /* ArrayAdapter<HashMap<String,String>> dataAdapter =new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrayList);
+                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    holder.spinner.setAdapter(dataAdapter);*/
+                    //holder.spinner.setSelection(spinnerArrayList.get(position).product_size);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                SpinnerAdapter spinnerAdapter = new SpinnerAdapter(getContext(), R.layout.spinner_layout, list);
+                Log.e("spin", "spinner" + spinnerAdapter);
+                // holder.spinner.setAdapter(new SpinnerAdapter(getContext(),R.layout.spinner_layout,productList));
+                // spinnerlist.addAll(position,list);
+
+                holder.spinner.setAdapter(spinnerAdapter);
+            }
+
+            //  holder.spinner.setText(arr.get(position).getProduct_size());
             holder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    // String size =list.get(i).getProduct_price();
+                    //String size= (adapterView.getSelectedItem().toString());
+                    String product = adapterView.getSelectedItem().toString();
+                    Log.e("ssss", "ddd" + product);
+
+                    String p = list.get(i).getProduct_price();
+                    Log.e("p", "p" + p);
+                    //Log.e("price","id_price"+size);
+                    holder.tvFinalprice.setText(p);
+                   /* int position = adapterView.getSelectedItem(size);
+
+                    String myData = list.get(i).toString();
+                    int position = dataAdapter.getPosition(myData);
+                    int position=adapterView.*/
+                   /* if (spinner_count == 1) {
+                        spinner_count++;
+
+                        //do nothing.
+                    } else {
+
+                        // write code on what you want to do with the item selection
+                    }
+                }*/
+                    // String s = productList.get(i).getProduct_price();
+                       /* Log.e("price","id_price"+size);
+                        holder.tvFinalprice.setText(size);*/
+
 
                 }
 
@@ -517,12 +545,17 @@ public class ProductListingFragment extends Fragment {
             holder.rlAddtocart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    productQuantityPopUp(holder.llAddtocart,holder.rlAddtocart);
-                    Log.e("","idddd"+product_id);
-                    product_id=productList.get(position).getProduct_id();
-                    product_name=productList.get(position).getProduct_name();
-                    product_image=productList.get(position).getProduct_image();
-                    product_price=productList.get(position).getProduct_price();
+                    productQuantityPopUp(holder.llAddtocart, holder.rlAddtocart);
+
+                    //Log.e("sppp",productList.get(holder.spinner.getSelectedItemPosition()).getProduct_size());
+
+                    product_id = productList.get(position).getProduct_id();
+                    Log.e("xx", "idddd" + product_id);
+                    product_name = productList.get(position).getProduct_name();
+                    product_image = productList.get(position).getProduct_image();
+                    product_price = holder.tvFinalprice.getText().toString();
+                    //Log.e("price","ird"+product_price);
+                    product_size = list.get(holder.spinner.getSelectedItemPosition()).getProduct_size();
 
                 }
             });
@@ -539,18 +572,18 @@ public class ProductListingFragment extends Fragment {
                     Vibrator vibe = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                     vibe.vibrate(100);
 
-                    count=count+1;
+                    count = count + 1;
 
                     holder.cart_item_number.setText(String.valueOf(count));
 
-                    int counter=preferences.getInt("count");
-                    int totalcount=counter+1;
-                    preferences.set("count",totalcount);
+                    int counter = preferences.getInt("count");
+                    int totalcount = counter + 1;
+                    preferences.set("count", totalcount);
                     preferences.commit();
 
                     ShakeAnimation(DrawerActivity.tvCount);
 
-                    DrawerActivity.tvCount.setText(""+totalcount);
+                    DrawerActivity.tvCount.setText("" + totalcount);
 
                 }
             });
@@ -564,29 +597,30 @@ public class ProductListingFragment extends Fragment {
                     if (count > 1) {
                         Vibrator vibe = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                         vibe.vibrate(100);
-                        count=count-1;
+                        count = count - 1;
 
-                        int counter=preferences.getInt("count");
-                        int totalcount=counter-1;
-                        preferences.set("count",totalcount);
+                        int counter = preferences.getInt("count");
+                        int totalcount = counter - 1;
+                        preferences.set("count", totalcount);
                         preferences.commit();
                         ShakeAnimation(DrawerActivity.tvCount);
-                        DrawerActivity.tvCount.setText(""+totalcount);
+                        DrawerActivity.tvCount.setText("" + totalcount);
                         holder.cart_item_number.setText(String.valueOf(count));
 
                     } else {
-                        int counter=preferences.getInt("count");
-                        int totalcount=counter-1;
-                        preferences.set("count",totalcount);
+                        int counter = preferences.getInt("count");
+                        int totalcount = counter - 1;
+                        preferences.set("count", totalcount);
                         preferences.commit();
                         ShakeAnimation(DrawerActivity.tvCount);
-                        DrawerActivity.tvCount.setText(""+totalcount);
+                        DrawerActivity.tvCount.setText("" + totalcount);
                         holder.rlAddtocart.setVisibility(View.VISIBLE);
                         holder.llAddtocart.setVisibility(View.GONE);
                     }
                 }
             });
         }
+
         public int getItemCount() {
             return mModel.size();
         }
@@ -596,38 +630,41 @@ public class ProductListingFragment extends Fragment {
             return position;
         }
 
+
         @Override
         public Filter getFilter() {
             return filter;
         }
-        Filter filter=new Filter() {
+
+        Filter filter = new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-                ArrayList<CategoryProducts> filteredList=new ArrayList<>();
-                if (charSequence.toString().isEmpty()){
+                ArrayList<CategoryProducts> filteredList = new ArrayList<>();
+                if (charSequence.toString().isEmpty()) {
                     filteredList.addAll(productList);
-                }else {
-                    for (CategoryProducts product:productList){
-                        if (product.getProduct_name().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                } else {
+                    for (CategoryProducts product : productList) {
+                        if (product.getProduct_name().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                             filteredList.add(product);
                         }
                     }
                 }
-                FilterResults filterResults=new FilterResults();
-                filterResults.values=filteredList;
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
                 return filterResults;
             }
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 mModel.clear();
-               mModel.addAll((Collection<? extends CategoryProducts>) filterResults.values);
+                mModel.addAll((Collection<? extends CategoryProducts>) filterResults.values);
                 notifyDataSetChanged();
             }
         };
     }
 
-    private void productQuantityPopUp(final LinearLayout llLayout,final RelativeLayout rlLayout) {
+
+    private void productQuantityPopUp(final LinearLayout llLayout, final RelativeLayout rlLayout) {
         final Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_Translucent_NoTitleBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.quanty_log);
@@ -643,9 +680,9 @@ public class ProductListingFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        final ImageView ivClose=dialog.findViewById(R.id.ivClose);
-        final EditText etQuantity=dialog.findViewById(R.id.etQuantity);
-        TextView tvOk=dialog.findViewById(R.id.btnAddCart);
+        final ImageView ivClose = dialog.findViewById(R.id.ivClose);
+        final EditText etQuantity = dialog.findViewById(R.id.etQuantity);
+        TextView tvOk = dialog.findViewById(R.id.btnAddCart);
 
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -659,35 +696,32 @@ public class ProductListingFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                        if(etQuantity.getText().toString().trim().isEmpty())
-                        {
-                            etQuantity.setError("Please enter quantity");
-                            etQuantity.requestFocus();
-                        }
-                        else
-                        {
-                            if (Utils.isNetworkConnectedMainThred(getActivity())) {
+                if (etQuantity.getText().toString().trim().isEmpty()) {
+                    etQuantity.setError("Please enter quantity");
+                    etQuantity.requestFocus();
+                } else {
+                    if (Utils.isNetworkConnectedMainThred(getActivity())) {
 
 
-                                llLayout.setVisibility(View.VISIBLE);
-                                rlLayout.setVisibility(View.GONE);
+                        llLayout.setVisibility(View.VISIBLE);
+                        rlLayout.setVisibility(View.GONE);
 
-                                AddtoCart(etQuantity.getText().toString());
-                                int counter=preferences.getInt("count");
-                                int totalcount=counter+1;
-                                preferences.set("count",totalcount);
-                                preferences.commit();
-                                ShakeAnimation(DrawerActivity.tvCount);
-                                DrawerActivity.tvCount.setText(""+totalcount);
-                                Vibrator vibe = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                                vibe.vibrate(100);
+                        AddtoCart(etQuantity.getText().toString());
+                        int counter = preferences.getInt("count");
+                        int totalcount = counter + 1;
+                        preferences.set("count", totalcount);
+                        preferences.commit();
+                        ShakeAnimation(DrawerActivity.tvCount);
+                        DrawerActivity.tvCount.setText("" + totalcount);
+                        Vibrator vibe = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        vibe.vibrate(100);
 
-                                //ProductQntyUpdate();
-                            } else {
-                                Toasty.error(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
-                            }
-                            dialog.cancel();
-                        }
+                        //ProductQntyUpdate();
+                    } else {
+                        Toasty.error(getActivity(), "No Internet Connection!", Toast.LENGTH_LONG).show();
+                    }
+                    dialog.cancel();
+                }
 
             }
         });
@@ -701,7 +735,7 @@ public class ProductListingFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 //dialog.cancel();
-                Log.e("response11111",response);
+                Log.e("response11111", response);
                 Toasty.success(getActivity(), "Item Added", Toast.LENGTH_SHORT).show();
             }
 
@@ -711,23 +745,25 @@ public class ProductListingFragment extends Fragment {
                 //dialog.cancel();
                 Log.e("error_response", "" + error);
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<String, String>();
-                param.put("product_id",product_id);
-                param.put("user_id",preferences.get("user_id"));
-                param.put("product_name",product_name);
-                param.put("product_image",product_image);
-                param.put("product_price",product_price);
-                param.put("product_quantity",qty);
-                Log.d("msg","parameters"+param);
+                param.put("product_id", product_id);
+                param.put("user_id", preferences.get("user_id"));
+                param.put("product_name", product_name);
+                param.put("product_image", product_image);
+                param.put("product_price", product_price);
+                param.put("product_size", product_size);
+                param.put("product_quantity", qty);
+                Log.e("msg", "parameters" + param);
                 return param;
             }
         };
-        RequestQueue requestQueue= Volley.newRequestQueue(getActivity());
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(rqst);
     }
+
     public void replaceFragmentWithAnimation(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
@@ -756,8 +792,8 @@ public class ProductListingFragment extends Fragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
 
-        ImageView ivClose=dialog.findViewById(R.id.ivClose);
-        TextView tvOk=dialog.findViewById(R.id.tvOk);
+        ImageView ivClose = dialog.findViewById(R.id.ivClose);
+        TextView tvOk = dialog.findViewById(R.id.tvOk);
 
         ivClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -775,10 +811,39 @@ public class ProductListingFragment extends Fragment {
 
     }
 
-    public void ShakeAnimation(View view)
-    {
+    public void ShakeAnimation(View view) {
         final Animation animShake = AnimationUtils.loadAnimation(getActivity(), R.anim.shake);
         view.startAnimation(animShake);
+    }
+
+    public class SpinnerAdapter extends ArrayAdapter<CategoryProducts> {
+
+        List<CategoryProducts> list;
+
+        public SpinnerAdapter(Context context, int textViewResourceId, List<CategoryProducts> list) {
+
+            super(context, textViewResourceId, list);
+            this.list = list;
+        }
+
+        @Override
+        public View getDropDownView(int position, View convertView, ViewGroup parent) {
+            return getCustomView(position, convertView, parent);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return getCustomView(position, convertView, parent);
+        }
+
+        public View getCustomView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            View row = inflater.inflate(R.layout.spinner_layout, parent, false);
+            TextView label = (TextView) row.findViewById(R.id.tvspinnerSize);
+            //label.setTypeface(typeface3);
+            label.setText(list.get(position).getProduct_size());
+            return row;
+        }
     }
 
 }

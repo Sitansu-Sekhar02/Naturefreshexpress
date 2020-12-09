@@ -244,6 +244,7 @@ public class CheckoutFragment extends Fragment {
                         String product_price=jsonObject.getString("product_price");
                         String product_image=jsonObject.getString("product_image");
                         String product_qnty=jsonObject.getString("product_quantity");
+                        String product_size=jsonObject.getString("product_size");
 
                         String res= product_image.replace("//","");
                         //Log.e("responsee",""+res);
@@ -255,6 +256,7 @@ public class CheckoutFragment extends Fragment {
                         cart.setProduct_image(product_image);
                         cart.setProduct_price(product_price);
                         cart.setProduct_quantity(product_qnty);
+                        cart.setProduct_size(product_size);
                         cartList.add(cart);
 
                         int price=Integer.parseInt(product_price);
@@ -352,7 +354,7 @@ public class CheckoutFragment extends Fragment {
         ImageButton cart_quant_minus;
         ImageButton cart_quant_add;
         TextView tvProductName,qntyPrice;
-        TextView tvFinalprice;
+        TextView tvFinalprice,tvcartProductSize;
         EditText productQuantity;
         ImageButton checkquantity;
         TextView cart_item_delete;
@@ -370,9 +372,10 @@ public class CheckoutFragment extends Fragment {
             cart_quant_add = itemView.findViewById(R.id.cart_quant_add);
             tvSave = itemView.findViewById(R.id.tvSave);
             productQuantity = itemView.findViewById(R.id.quantity);
-            tvDelCharge = itemView.findViewById(R.id.tvDelCharge);
             tvSize = itemView.findViewById(R.id.tvSize);
             checkquantity=itemView.findViewById(R.id.check);
+            tvcartProductSize=itemView.findViewById(R.id.tvcartProductSize);
+
 
             qntyPrice = itemView.findViewById(R.id.totalPrice);
             cart_item_image = itemView.findViewById(R.id.cart_item_image);
@@ -400,6 +403,8 @@ public class CheckoutFragment extends Fragment {
                     .load(mModel.get(position).getProduct_image())
                     .into(holder.cart_item_image);
             holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
+            holder.tvcartProductSize.setText(mModel.get(position).getProduct_size());
+
             holder.productQuantity.setText(mModel.get(position).getProduct_quantity());
             holder.productQuantity.setFocusable(false);
             holder.cart_item_delete.setVisibility(View.GONE);

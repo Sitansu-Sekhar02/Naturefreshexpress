@@ -20,7 +20,6 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="@dimen/_120sdp"
-            android:background="@drawable/button_adproduct"
             android:layout_height="@dimen/_170sdp">
             <ImageView
                 android:id="@+id/ivProductimage"
@@ -223,14 +222,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_adproduct"
                     android:layout_marginTop="@dimen/_15sdp">
-
-                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    <Spinner
                         android:id="@+id/product_size"
                         android:layout_width="match_parent"
                         android:singleLine="true"
-                        android:textAlignment="center"                        android:layout_height="match_parent"
+                        android:textAlignment="center"
+                        android:layout_height="match_parent"
                         android:layout_margin="@dimen/_5sdp"
-                        android:popupBackground="#000"
                         android:gravity="center_horizontal" />
                 </LinearLayout>
 

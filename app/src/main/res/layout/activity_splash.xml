@@ -7,32 +7,31 @@
     android:background="#ffff"
     tools:context=".activity.SplashActivity">
     <ImageView
-        android:layout_marginBottom="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
         android:id="@+id/image"
         android:layout_centerInParent="true"
         android:background="@drawable/vs"
-        android:layout_width="@dimen/_210sdp"
-        android:layout_height="@dimen/_200sdp"/>
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_230sdp"/>
     <TextView
         android:id="@+id/ivAppName"
         android:text="VS Farma"
         android:fontFamily="cursive"
         android:textSize="@dimen/_40sdp"
         android:textStyle="bold"
-        android:textColor="#033004"
+        android:textColor="#106112"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-   <!-- <TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivAppName"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:text="Powered by @BluCorSys Pvt.Ltd."
+        android:text="@string/care"
         android:textColor="@color/colorfont1"
-        android:textSize="@dimen/_16sdp" />-->
+        android:textSize="@dimen/_14sdp" />
 
 </RelativeLayout>

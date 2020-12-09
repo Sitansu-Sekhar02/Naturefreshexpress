@@ -189,7 +189,6 @@ public class CartFragment extends Fragment {
                 Log.e("cart",response);
                 //progressDialog.cancel();
                 try{
-
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -202,7 +201,7 @@ public class CartFragment extends Fragment {
                         String product_price=jsonObject.getString("product_price");
                         String product_image=jsonObject.getString("product_image");
                         String product_qnty=jsonObject.getString("product_quantity");
-
+                        String product_size=jsonObject.getString("product_size");
 
                         String res= product_image.replace("//","");
                         //Log.e("responsee",""+res);
@@ -214,6 +213,7 @@ public class CartFragment extends Fragment {
                         cart.setProduct_image(product_image);
                         cart.setProduct_price(product_price);
                         cart.setProduct_quantity(product_qnty);
+                        cart.setProduct_size(product_size);
                         cartList.add(cart);
 
                         int price=Integer.parseInt(product_price);
@@ -280,7 +280,7 @@ public class CartFragment extends Fragment {
         ImageButton cart_quant_add;
         ImageButton checkquantity;
         TextView tvProductName,qntyPrice;
-        TextView tvFinalprice,tvSize;
+        TextView tvFinalprice,tvSize,tvcartProductSize;
         EditText productQuantity;
         TextView cart_item_delete;
         ImageView cart_item_image;
@@ -300,6 +300,8 @@ public class CartFragment extends Fragment {
             cart_item_delete = itemView.findViewById(R.id.cart_item_delete);
             tvProductName = itemView.findViewById(R.id.tvcartProductName);
             qntyPrice = itemView.findViewById(R.id.totalPrice);
+            tvcartProductSize=itemView.findViewById(R.id.tvcartProductSize);
+
 
         }
     }
@@ -327,9 +329,8 @@ public class CartFragment extends Fragment {
                     .load(mModel.get(position).getProduct_image())
                     .into(holder.cart_item_image);
             holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
-
+            holder.tvcartProductSize.setText(mModel.get(position).getProduct_size());
             holder.productQuantity.setText(mModel.get(position).getProduct_quantity());
-
 
             int productprice = Integer.parseInt(mModel.get(position).getProduct_price());
             int qnty = Integer.parseInt(mModel.get(position).getProduct_quantity());

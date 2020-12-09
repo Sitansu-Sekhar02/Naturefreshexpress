@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
         <RelativeLayout
+            android:visibility="gone"
             android:background="@drawable/capsule"
             android:layout_marginRight="@dimen/_5sdp"
             android:layout_marginLeft="@dimen/_5sdp"
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp">
             <EditText
+
                 android:id="@+id/EdSearchView"
                 android:layout_width="match_parent"
                 android:drawableLeft="@drawable/ic_search_24"

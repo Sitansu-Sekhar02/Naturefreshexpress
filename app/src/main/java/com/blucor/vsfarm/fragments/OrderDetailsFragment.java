@@ -18,8 +18,8 @@ import com.blucor.vsfarm.extra.Preferences;
 
 
 public class OrderDetailsFragment extends Fragment {
-    TextView orderId,tvOrderDate,tvProductName,tvOrderTotal;
-    TextView tvName,tvAddress,tvMobile,tvSize;
+    TextView orderId,tvOrderDate,tvProductName,tvOrderTotal,productpriceDetails;
+    TextView tvName,tvAddress,tvMobile,tvSize,productSizee;
     View v;
     Preferences preferences;
     String contact;
@@ -38,6 +38,8 @@ public class OrderDetailsFragment extends Fragment {
         tvAddress=v.findViewById(R.id.tvAddress);
         tvMobile=v.findViewById(R.id.tvContact);
         tvSize=v.findViewById(R.id.tvSize);
+        productSizee=v.findViewById(R.id.productSizee);
+        productpriceDetails=v.findViewById(R.id.product_price);
 
         DrawerActivity.iv_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,19 +59,21 @@ public class OrderDetailsFragment extends Fragment {
         String order_date=b.getString("order_date");
         String order_qnty=b.getString("product_quantity");
         String product_price=b.getString("product_price");
+        String product_size=b.getString("product_size");
 
         tvSize.setText(order_qnty);
         orderId.setText("#"+order_id);
         tvOrderDate.setText(order_date);
         tvProductName.setText(order_name);
+        productSizee.setText(product_size);
+        Log.e("size","sss"+product_size);
+        productpriceDetails.setText("\u20b9 " +product_price);
 
         //tvOrderTotal.setText(product_price);
         int price=Integer.parseInt(product_price);
         int qty=Integer.parseInt(order_qnty);
         Total_price = Total_price + (qty* price);
         tvOrderTotal.setText("\u20b9 " +Total_price);
-
-        Log.e("contact",""+contact);
         return v;
     }
     public void replaceFragmentWithAnimation(Fragment fragment) {

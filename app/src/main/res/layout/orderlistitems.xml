@@ -39,6 +39,29 @@
                     android:layout_height="wrap_content">
                     <com.blucor.vsfarm.customecomponent.CustomTextView
                         android:layout_gravity="left"
+                        android:text="Order Id :"
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:textColor="#333333"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        app:font_name="NunitoSemiBold.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:id="@+id/orderid"
+                        android:text=""
+                        android:textSize="@dimen/_12sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:textColor="#333333"
+                        app:font_name="NunitoSemiBold.ttf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.blucor.vsfarm.customecomponent.CustomTextView
+                        android:layout_gravity="left"
                         android:text="Product :"
                         android:textSize="@dimen/_12sdp"
                         android:layout_marginRight="@dimen/_10sdp"

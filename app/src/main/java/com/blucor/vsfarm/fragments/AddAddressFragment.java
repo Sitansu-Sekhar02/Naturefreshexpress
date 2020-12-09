@@ -166,37 +166,6 @@ public class AddAddressFragment extends Fragment {
         requestQueue.add(request);
     }
 
-   /* public class SpinnerAdapter extends ArrayAdapter<HashMap<String, String>> {
-
-        ArrayList<HashMap<String, String>> list;
-
-        public SpinnerAdapter(Context context, int textViewResourceId, ArrayList<HashMap<String, String>> list) {
-
-            super(context, textViewResourceId, list);
-
-            this.list = list;
-        }
-
-        @Override
-        public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            return getCustomView(position, convertView, parent);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return getCustomView(position, convertView, parent);
-        }
-
-        public View getCustomView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View row = inflater.inflate(R.layout.spinner_layout, parent, false);
-            TextView label = (TextView) row.findViewById(R.id.tvName);
-            //label.setTypeface(typeface3);
-            label.setText(list.get(position).get("key"));
-            return row;
-        }
-    }*/
-
     public void replaceFragmentWithAnimation(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);

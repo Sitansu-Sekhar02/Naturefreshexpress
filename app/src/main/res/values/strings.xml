@@ -2,8 +2,8 @@
     <string name="app_name">VS Farma</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="email_mobile_number">User_Id</string>
-    <string name="enter_your_email_mobile_number">Enter Your Email</string>
+    <string name="email_mobile_number">User Id</string>
+    <string name="enter_your_email_mobile_number">Enter Email or Mobile Number</string>
     <string name="password">Password</string>
     <string name="enter_password">Enter password</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -28,4 +28,6 @@
     <string name="invalid_Email">Please enter valid email</string>
     <string name="invalid_Password">Enter a valid password</string>
     <string name="invalid_address">Please enter address</string>
+    <string name="care">We Care for Farmers.</string>
+    <string name="passwordtext">Dear Customer\n Your password has been sent to your registered email id.\n Please check your email for confirmation and Do not share it to others.</string>
 </resources>

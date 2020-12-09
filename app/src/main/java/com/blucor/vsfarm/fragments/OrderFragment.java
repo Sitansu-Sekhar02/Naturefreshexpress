@@ -136,7 +136,6 @@ public class OrderFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 dialog.cancel();
-                Log.e("order details",response);
 
                 try{
                     JSONArray jsonArray = new JSONArray(response);
@@ -152,6 +151,9 @@ public class OrderFragment extends Fragment {
                         String product_quantity=jsonObject.getString("product_quantity");
                         String order_date_month=jsonObject.getString("order_date");
                         String product_price=jsonObject.getString("product_price");
+                        String product_size=jsonObject.getString("product_size");
+
+
 
                         //String product_image="http://vsfastirrigation.com/upload/cat_image/"+jsonObject.getString("product_image");
 
@@ -163,6 +165,8 @@ public class OrderFragment extends Fragment {
                         order.setOrder_id(order_id);
                         //order.setProduct_image(product_image);
                         order.setProduct_price(product_price);
+                        order.setProduct_size(product_size);
+
 
                         userOrderList.add(order);
 
@@ -186,8 +190,6 @@ public class OrderFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 dialog.cancel();
-                Log.e("error_response", "" + error);
-
             }
         }){
             @Override
@@ -209,7 +211,7 @@ public class OrderFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    public void replaceFragmentWithAnimation(Fragment fragment,String order_id,String order_name,String order_date,String order_qnty,String product_price) {
+    public void replaceFragmentWithAnimation(Fragment fragment,String order_id,String order_name,String order_date,String order_qnty,String product_price,String product_size) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
         Bundle bundle = new Bundle();
@@ -218,6 +220,7 @@ public class OrderFragment extends Fragment {
         bundle.putString("order_date",order_date);
         bundle.putString("product_quantity",order_qnty);
         bundle.putString("product_price",product_price);
+        bundle.putString("product_size",product_size);
 
         //bundle.putString("order_date_month",);
         fragment.setArguments(bundle);
@@ -226,7 +229,7 @@ public class OrderFragment extends Fragment {
     }
 
     private class Holder extends RecyclerView.ViewHolder {
-        TextView qnty;
+        TextView qnty,order_id;
         TextView tvProductName,orderDate;
         ImageView productImage;
 
@@ -240,6 +243,7 @@ public class OrderFragment extends Fragment {
             productImage=itemView.findViewById(R.id.productImage);
             orderDate=itemView.findViewById(R.id.tvOrderDate);
             tvProductName = itemView.findViewById(R.id.tvProductName);
+            order_id=itemView.findViewById(R.id.orderid);
 
         }
     }
@@ -268,6 +272,7 @@ public class OrderFragment extends Fragment {
             Glide.with(mContext)
                     .load(mModel.get(position).getProduct_image())
                     .into(holder.productImage);
+            holder.order_id.setText(mModel.get(position).getOrder_id());
 
             holder.llMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,9 +282,9 @@ public class OrderFragment extends Fragment {
                 String order_date=mModel.get(position).getOrder_date_month();
                 String order_qnty=mModel.get(position).getProduct_quantity();
                 String product_price=mModel.get(position).getProduct_price();
+                String product_size=mModel.get(position).getProduct_size();
 
-                Log.e("order_id","order_id"+order_id);
-                replaceFragmentWithAnimation(new OrderDetailsFragment(),order_id,order_name,order_date,order_qnty,product_price);
+                replaceFragmentWithAnimation(new OrderDetailsFragment(),order_id,order_name,order_date,order_qnty,product_price,product_size);
             }
         });
 

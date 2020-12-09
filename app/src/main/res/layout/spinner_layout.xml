@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.blucor.vsfarm.customecomponent.CustomTextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvspinnerSize"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
         android:gravity="center_vertical"

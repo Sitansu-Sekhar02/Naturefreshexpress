@@ -8,8 +8,11 @@ public class CartItem {
     private  String product_image;
     private  String product_price;
     private  String product_quantity;
+    private  String product_size;
 
-    public CartItem(String cart_id, String product_id, String user_id, String product_name, String product_image, String product_price, String product_quantity) {
+
+
+    public CartItem(String cart_id, String product_id, String user_id, String product_name, String product_image, String product_price, String product_quantity,String product_size) {
         this.cart_id = cart_id;
         this.product_id = product_id;
         this.user_id = user_id;
@@ -17,6 +20,10 @@ public class CartItem {
         this.product_image = product_image;
         this.product_price = product_price;
         this.product_quantity = product_quantity;
+        this.product_size = product_size;
+
+
+
 
     }
 
@@ -78,5 +85,12 @@ public class CartItem {
 
     public void setProduct_quantity(String product_quantity) {
         this.product_quantity = product_quantity;
+    }
+    public String getProduct_size() {
+        return product_size;
+    }
+
+    public void setProduct_size(String product_size) {
+        this.product_size = product_size;
     }
 }

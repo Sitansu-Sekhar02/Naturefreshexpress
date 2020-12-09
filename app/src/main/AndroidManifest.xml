@@ -23,11 +23,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".activity.AdminDashActivity"/>
-        <activity android:name=".admin.Notifications" />
-        <activity android:name=".activity.AddProductToCategory"/>
         <activity android:name=".activity.DrawerActivity" />
         <activity android:name=".activity.SignUpActivity" />
-        <activity android:name=".activity.AddCategory" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>

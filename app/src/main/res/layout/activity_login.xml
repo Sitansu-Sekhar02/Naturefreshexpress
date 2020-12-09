@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <ScrollView
@@ -21,31 +22,26 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_marginTop="@dimen/_20sdp"
+                    <ImageView
                         android:textStyle="bold"
                         android:fontFamily="cursive"
                         android:textColor="#FB9411"
                         android:textSize="@dimen/_35sdp"
-                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@drawable/vs"
+                        android:layout_width="@dimen/_200sdp"
                         android:text="Login Page"
                         android:gravity="center"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textSize="@dimen/_20sdp"
-                        android:text="Vs Farma"
-                        android:gravity="center"
-                        android:textColor="#038A09"
-                        android:textStyle="bold"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="@dimen/_15sdp"
                 android:id="@+id/llmain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +53,6 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:orientation="vertical">
 
-
                     <com.blucor.vsfarm.customecomponent.CustomTextView
                         style="@style/general_lable_style"
                         android:layout_width="wrap_content"
@@ -67,7 +62,6 @@
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoBold.ttf"
                         android:paddingLeft="@dimen/_3sdp" />
-
 
                     <com.blucor.vsfarm.customecomponent.CustomEdittext
                         android:id="@+id/EmailEdit"

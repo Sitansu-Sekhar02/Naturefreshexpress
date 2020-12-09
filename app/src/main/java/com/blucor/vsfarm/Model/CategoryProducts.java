@@ -1,5 +1,7 @@
 package com.blucor.vsfarm.Model;
 
+import org.json.JSONArray;
+
 public class CategoryProducts {
     private  String category_id;
     private  String product_id;
@@ -9,8 +11,10 @@ public class CategoryProducts {
     private  String product_price;
     private  String product_desc;
     private  String product_size;
+    private JSONArray array;
 
     public CategoryProducts() {
+
 
     }
     public CategoryProducts(String category_id,String product_id, String user_id,String product_name, String product_image, String product_price, String product_desc,String product_size) {
@@ -81,5 +85,13 @@ public class CategoryProducts {
 
     public void setProduct_size(String product_size) {
         this.product_size = product_size;
+    }
+
+    public JSONArray getArray() {
+        return array;
+    }
+
+    public void setArray(JSONArray array) {
+        this.array = array;
     }
 }

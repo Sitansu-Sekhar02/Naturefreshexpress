@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.os.Build;
@@ -17,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.blucor.vsfarm.R;
 import com.blucor.vsfarm.extra.Preferences;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,6 +87,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
 
                 if (Utils.isNetworkConnectedMainThred(LoginActivity.this)) {
+                    ProgressDialog();
+                    dialog.show();
                        ForgotPassword();
 
                 } else {
@@ -129,15 +135,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onResponse(String response) {
+                dialog.cancel();
                 Log.e("forgot password",response);
 
-                Toasty.normal(LoginActivity.this, "Check your Email!Password has been sent to your Email!", Toast.LENGTH_LONG).show();
+                ProgressForgotPassword();
+
+                //Toasty.normal(LoginActivity.this, "Check your Email!Password has been sent to your Email!", Toast.LENGTH_LONG).show();
 
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dialog.cancel();
                 Log.e("error_response", "" + error);
             }
         }){
@@ -151,6 +161,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         RequestQueue requestQueue= Volley.newRequestQueue(LoginActivity.this);
         requestQueue.add(request);
 
+    }
+
+    private void ProgressForgotPassword() {
+
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.qnty_popup);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.show();
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        Button tvOk=dialog.findViewById(R.id.btnOk);
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+
+            }
+        });
     }
 
     private void LoginSuccess() {

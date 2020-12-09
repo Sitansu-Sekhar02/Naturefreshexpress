@@ -20,7 +20,7 @@
                 android:background="@drawable/square_red"
                 android:layout_margin="@dimen/_10sdp"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_170sdp">
+                android:layout_height="@dimen/_180sdp">
 
                 <com.blucor.vsfarm.customecomponent.CustomTextView
                     android:textStyle="bold"
@@ -31,6 +31,10 @@
                     app:font_name="NunitoExtraBold.ttf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="#A6A4A4"/>
 
 
                 <LinearLayout
@@ -48,7 +52,7 @@
                     <TextView
                         android:paddingLeft="@dimen/_2sdp"
                         android:textSize="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_50sdp"
+                        android:layout_marginLeft="@dimen/_60sdp"
                         android:textColor="@color/myblack"
                         android:text=" #BM20121"
                         android:id="@+id/tvOrderId"
@@ -74,7 +78,7 @@
                         android:paddingLeft="@dimen/_2sdp"
                         android:id="@+id/tvOrderDate"
                         android:textSize="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
                         android:textColor="@color/myblack"
                         android:text=" 22 Dec 2022"
                         android:layout_width="wrap_content"
@@ -116,9 +120,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/productSizee"
                         android:paddingLeft="@dimen/_2sdp"
                         android:textSize="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_25sdp"
+                        android:layout_marginLeft="@dimen/_35sdp"
                         android:singleLine="true"
                         android:textColor="@color/myblack"
                         android:text="Pipe( 11 Kg )"
@@ -147,6 +152,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="@dimen/_11sdp"
+                        android:textColor="#9F0606"
+                        android:text="Producr price"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/product_price"
+                        android:paddingLeft="@dimen/_2sdp"
+                        android:textSize="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_38sdp"
+                        android:textColor="@color/myblack"
+                        android:text=" \u20B9 1999"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -191,7 +221,10 @@
                     android:text="Shipping Details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="#A6A4A4"/>
                 <LinearLayout
                     android:layout_margin="@dimen/_5sdp"
                     android:layout_width="match_parent"
