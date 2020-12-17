@@ -67,16 +67,15 @@ public class CartFragment extends Fragment {
 
     Preferences preferences;
     int final_price= 0;
-    int Total_price=0;
-   // int price=0;
+    double Total_price=0.0;
+
     String product_id;
     String cart_id;
 
     Dialog dialog;
-    int result;
+    double result;
     //view
     View view;
-
 
     private List<CartItem> cartList;
     private CartAdapter cartAdapter;
@@ -94,7 +93,6 @@ public class CartFragment extends Fragment {
     ImageView emptyCart;
     Button shopNow;
    //EditText productQuantity;
-
 
     LinearLayout llcartItem;
     LinearLayout cartEmpty;
@@ -216,8 +214,8 @@ public class CartFragment extends Fragment {
                         cart.setProduct_size(product_size);
                         cartList.add(cart);
 
-                        int price=Integer.parseInt(product_price);
-                        int qty=Integer.parseInt(product_qnty);
+                        double price=Double.parseDouble(product_price);
+                        double qty=Double.parseDouble(product_qnty);
 
                         Total_price = Total_price + ( price* qty);
                         Log.e("price add",""+Total_price);
@@ -332,8 +330,8 @@ public class CartFragment extends Fragment {
             holder.tvcartProductSize.setText(mModel.get(position).getProduct_size());
             holder.productQuantity.setText(mModel.get(position).getProduct_quantity());
 
-            int productprice = Integer.parseInt(mModel.get(position).getProduct_price());
-            int qnty = Integer.parseInt(mModel.get(position).getProduct_quantity());
+            double productprice = Double.parseDouble(mModel.get(position).getProduct_price());
+            double qnty = Double.parseDouble(mModel.get(position).getProduct_quantity());
             result=productprice*qnty;
 
             Log.e("11productprice",""+productprice);

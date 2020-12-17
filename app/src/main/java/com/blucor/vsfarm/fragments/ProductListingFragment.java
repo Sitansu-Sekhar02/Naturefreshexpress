@@ -550,7 +550,6 @@ public class ProductListingFragment extends Fragment {
                     //Log.e("sppp",productList.get(holder.spinner.getSelectedItemPosition()).getProduct_size());
 
                     product_id = productList.get(position).getProduct_id();
-                    Log.e("xx", "idddd" + product_id);
                     product_name = productList.get(position).getProduct_name();
                     product_image = productList.get(position).getProduct_image();
                     product_price = holder.tvFinalprice.getText().toString();

@@ -1,7 +1,5 @@
 package com.blucor.vsfarm.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,12 +31,10 @@ import com.blucor.vsfarm.extra.Preferences;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import es.dmoral.toasty.Toasty;
 
-public class SignUpActivity extends AppCompatActivity {
+public class DealerRegistration extends AppCompatActivity {
 
     //Textview
     TextView tvSignIn;
@@ -46,7 +44,12 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editEmail;
     private EditText editContact;
     private EditText editAddress;
+    private EditText editTextState;
     private EditText editTextPassword;
+    private EditText editTextGstNo;
+
+
+
     AwesomeValidation awesomeValidation;
     Dialog dialog;
 
@@ -59,14 +62,15 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_dealer_sign_up);
         tvSignIn = findViewById(R.id.tvSignIn);
-
         editTextName = (EditText) findViewById(R.id.etName);
         editEmail = (EditText) findViewById(R.id.etEmail);
         editContact = (EditText) findViewById(R.id.etContact);
         editAddress = (EditText) findViewById(R.id.etAddress);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
+        editTextGstNo = (EditText) findViewById(R.id.etGstNo);
+        editTextState = (EditText) findViewById(R.id.etState);
 
         buttonRegister = (Button) findViewById(R.id.tvRegisterButton);
 
@@ -78,7 +82,10 @@ public class SignUpActivity extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.etContact, "[5-9]{1}[0-9]{9}$", R.string.invalid_PhoneNumber);
         awesomeValidation.addValidation(this, R.id.etEmail, Patterns.EMAIL_ADDRESS, R.string.invalid_Email);
         awesomeValidation.addValidation(this, R.id.etAddress, RegexTemplate.NOT_EMPTY, R.string.invalid_address);
+        awesomeValidation.addValidation(this, R.id.etState, RegexTemplate.NOT_EMPTY, R.string.invalid_state);
         awesomeValidation.addValidation(this, R.id.etPassword, RegexTemplate.NOT_EMPTY, R.string.invalid_Password);
+        awesomeValidation.addValidation(this, R.id.etGstNo, RegexTemplate.NOT_EMPTY, R.string.invalid_Password);
+
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,12 +93,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (awesomeValidation.validate()) {
                     Log.d("success", "onResponse: ");
-                    if (Utils.isNetworkConnectedMainThred(SignUpActivity.this)) {
+                    if (Utils.isNetworkConnectedMainThred(DealerRegistration.this)) {
                         Validation();
                         ProgressForSignup();
                         dialog.show();
                     } else {
-                        Toasty.error(SignUpActivity.this,"No Internet Connection!", Toast.LENGTH_LONG).show();
+                        Toasty.error(DealerRegistration.this,"No Internet Connection!", Toast.LENGTH_LONG).show();
                     }
                 }
                 else
@@ -105,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                startActivity(new Intent(DealerRegistration.this, LoginActivity.class));
                 overridePendingTransition(R.anim.slide_left, R.anim.slide_right);
             }
         });
@@ -113,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void ProgressForSignup() {
-        dialog = new Dialog(SignUpActivity.this, android.R.style.Theme_Translucent_NoTitleBar);
+        dialog = new Dialog(DealerRegistration.this, android.R.style.Theme_Translucent_NoTitleBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.progress_for_cart);
         Window window = dialog.getWindow();
@@ -130,17 +137,16 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     dialog.cancel();
-
                     if (response.equals(""))
                         Log.d("success", "onResponse: " + response);
-                     startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                     Toast.makeText(SignUpActivity.this, response, Toast.LENGTH_SHORT).show();
+                     startActivity(new Intent(DealerRegistration.this, LoginActivity.class));
+                     Toast.makeText(DealerRegistration.this, response, Toast.LENGTH_SHORT).show();
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     dialog.cancel();
-                    Toasty.error(SignUpActivity.this, "Some error occurred -> " + error, Toast.LENGTH_SHORT).show();
+                    Toasty.error(DealerRegistration.this, "Some error occurred -> " + error, Toast.LENGTH_SHORT).show();
                 }
             }) {
                 @Override
@@ -154,7 +160,7 @@ public class SignUpActivity extends AppCompatActivity {
                     return parameters;
                 }
             };
-            RequestQueue rQueue = Volley.newRequestQueue(SignUpActivity.this);
+            RequestQueue rQueue = Volley.newRequestQueue(DealerRegistration.this);
             rQueue.add(request);
         }
 }

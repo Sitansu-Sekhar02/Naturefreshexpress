@@ -2,9 +2,14 @@ package com.blucor.vsfarm.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -36,7 +41,10 @@ import com.android.volley.toolbox.Volley;
 import com.blucor.vsfarm.Model.CartItem;
 import com.blucor.vsfarm.R;
 import com.blucor.vsfarm.activity.AdminDashActivity;
+import com.blucor.vsfarm.activity.DealerRegistration;
 import com.blucor.vsfarm.activity.DrawerActivity;
+import com.blucor.vsfarm.activity.LoginActivity;
+import com.blucor.vsfarm.activity.SignUpActivity;
 import com.blucor.vsfarm.activity.Utils;
 import com.blucor.vsfarm.extra.Preferences;
 import com.bumptech.glide.Glide;
@@ -72,8 +80,8 @@ public class CheckoutFragment extends Fragment {
     String product_id;
     //Gridlayoutmanger
     GridLayoutManager mGridLayoutManager;
-    int result=0;
-    int Total_price=0;
+    double result=0;
+    double Total_price=0;
 
     //Textview
     TextView tvProceed;
@@ -83,10 +91,14 @@ public class CheckoutFragment extends Fragment {
 
     TextView Username,UserAddress;
     TextView checkoutPrice;
+    TextView tvGST;
     TextView totalAmount;
     Dialog dialog;
     LinearLayout llcartItem;
     ImageView emptyCart;
+    double resulOfGst;
+    double finalResult;
+    ImageView payment_popup;
 
 
     //Preference
@@ -107,6 +119,10 @@ public class CheckoutFragment extends Fragment {
         UserAddress=v.findViewById(R.id.tvPhoneNumber);
         checkoutPrice=v.findViewById(R.id.tvCheckoutprice);
         tvCartPrice=v.findViewById(R.id.tvCartprice);
+        tvGST=v.findViewById(R.id.tvGST);
+        payment_popup=v.findViewById(R.id.imageView9);
+
+
 
         emptyCart = v.findViewById(R.id.gif);
         llcartItem = v.findViewById(R.id.llcartItem);
@@ -141,6 +157,12 @@ public class CheckoutFragment extends Fragment {
                replaceFragmentWithAnimation(new CartFragment());
             }
         });
+        payment_popup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaymentPopup();
+            }
+        });
 
         tvProceed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +187,40 @@ public class CheckoutFragment extends Fragment {
        });
 
         return v;
+    }
+
+    private void PaymentPopup() {
+        final Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.payment_popup);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.show();
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+
+
+        //findId
+        ImageView popup =  dialog.findViewById(R.id.ivClosePopup);
+
+        //set value
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog.show();
+
+        //set listener
+        popup.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
     }
 
     private void ProgressForCheckout() {
@@ -213,9 +269,8 @@ public class CheckoutFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("user_id",preferences.get("user_id"));
-                parameters.put("order_total", String.valueOf(Total_price));
+                parameters.put("order_total", String.valueOf(finalResult));
                 parameters.put("subtotal", String.valueOf(result));
-
                 Log.e("check","wwww"+parameters);
                 return parameters;
             }
@@ -259,15 +314,22 @@ public class CheckoutFragment extends Fragment {
                         cart.setProduct_size(product_size);
                         cartList.add(cart);
 
-                        int price=Integer.parseInt(product_price);
-                        int qty=Integer.parseInt(product_qnty);
+                        double price=Double.parseDouble(product_price);
+                        double qty=Double.parseDouble(product_qnty);
 
                         Total_price = Total_price + ( price* qty);
-                        Log.e("price add",""+Total_price);
-                        checkoutPrice.setText(String.valueOf( Total_price));
-                        checkoutPrice.setText("Total Amount \u20b9" +Total_price);
-                        Log.e("total price","price"+Total_price);
+                        resulOfGst=(Total_price/100.0f) * 5;
+                        Log.e("gst",""+resulOfGst);
+                        tvGST.setText(String.valueOf( "\u20b9"+resulOfGst));
 
+                        finalResult=Total_price+resulOfGst;
+
+                        Log.e("price add",""+Total_price);
+                        //checkoutPrice.setText(String.valueOf( Total_price));
+                        checkoutPrice.setText("Total Amount \u20b9" +finalResult);
+                        Log.e("total price","price"+finalResult);
+
+                         //tvGST.setText((int) resulOfGst);
                     }
                     totalAmount.setText("\u20b9 " +Total_price);
 
@@ -276,7 +338,6 @@ public class CheckoutFragment extends Fragment {
                 catch (JSONException e) {
                     Log.d("JSONException", e.toString());
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -414,10 +475,10 @@ public class CheckoutFragment extends Fragment {
             holder.checkquantity.setVisibility(View.GONE);
 
             //calculate product price with qnty
-            int productprice;
-            int qnty;
-            productprice = Integer.parseInt(mModel.get(position).getProduct_price());
-            qnty = Integer.parseInt(mModel.get(position).getProduct_quantity());
+            double productprice;
+            double qnty;
+            productprice = Double.parseDouble(mModel.get(position).getProduct_price());
+            qnty = Double.parseDouble(mModel.get(position).getProduct_quantity());
             result=productprice*qnty;
             Log.e("result",""+result);
             holder.qntyPrice.setText("\u20b9" +result);

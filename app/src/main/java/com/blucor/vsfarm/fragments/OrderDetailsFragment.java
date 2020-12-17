@@ -23,7 +23,7 @@ public class OrderDetailsFragment extends Fragment {
     View v;
     Preferences preferences;
     String contact;
-    int Total_price=0;
+    double Total_price=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,8 +70,8 @@ public class OrderDetailsFragment extends Fragment {
         productpriceDetails.setText("\u20b9 " +product_price);
 
         //tvOrderTotal.setText(product_price);
-        int price=Integer.parseInt(product_price);
-        int qty=Integer.parseInt(order_qnty);
+        double price=Double.parseDouble(product_price);
+        double qty=Double.parseDouble(order_qnty);
         Total_price = Total_price + (qty* price);
         tvOrderTotal.setText("\u20b9 " +Total_price);
         return v;

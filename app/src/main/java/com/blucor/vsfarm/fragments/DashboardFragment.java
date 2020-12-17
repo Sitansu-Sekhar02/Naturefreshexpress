@@ -141,24 +141,11 @@ public class DashboardFragment extends Fragment {
         categoryList = new ArrayList<>();
         tabLayout.setupWithViewPager(mViewPager, true);
 
-      /* catSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           @Override
-           public boolean onQueryTextSubmit(String s) {
-               return false;
-           }
-
-           @Override
-           public boolean onQueryTextChange(String s) {
-               adapter.getFilter().filter(s);
-               return false;
-           }
-       });*/
         catSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 adapter.getFilter().filter(s);
-
             }
 
             @Override
@@ -263,8 +250,6 @@ public class DashboardFragment extends Fragment {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
 
-
-
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                         CategoryModel user = new CategoryModel();
@@ -334,7 +319,6 @@ public class DashboardFragment extends Fragment {
         public void onBindViewHolder(@NonNull final Holder holder, final int position) {
 
             holder.tvCatName.setText(mModel.get(position).getCategory_name());
-            //holder.image.setImageDrawable(getResources().getDrawable(image[position]));
             Glide.with(mContext)
                     .load(mModel.get(position).getCategory_image())
                     .into(holder.image);

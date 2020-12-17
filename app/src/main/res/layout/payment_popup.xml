@@ -1,143 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
+        android:id="@+id/payment_popup"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_42sdp"
-        android:background="@color/grey_100"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#FAFAFA"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivClosePopup"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="end"
+            android:background="@drawable/cross"
+            android:layout_marginRight="@dimen/_10sdp" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:weightSum="3">
-
-            <com.blucor.vsfarm.customecomponent.CustomTextView
-                android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:text="LOGIN"
-                android:textColor="@color/grey_800"
-                android:textSize="@dimen/_10sdp"
-                app:font_name="NunitoRegular.ttf" />
-
-            <com.blucor.vsfarm.customecomponent.CustomTextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_weight="1"
+                android:text="@string/thankyou"
                 android:gravity="center"
-                android:text="PAYMENT"
-                android:textColor="@color/grey_800"
-                android:textSize="@dimen/_10sdp"
-                app:font_name="NunitoRegular.ttf" />
+                android:textColor="#0B0B0B"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold" />
 
-            <com.blucor.vsfarm.customecomponent.CustomTextView
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="COMPLETE"
-                android:textColor="@color/grey_800"
-                android:textSize="@dimen/_10sdp"
-                app:font_name="NunitoRegular.ttf" />
+                android:text="Please pay the amount in the Following Bank Details."
+                android:textAlignment="center"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="#121111"
+                tools:ignore="RtlCompat" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:weightSum="3">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.4"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/_9sdp"
-                    android:layout_height="@dimen/_9sdp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/circle" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/black" />
+            android:gravity="center"
+            android:layout_height="wrap_content">
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.3"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/_9sdp"
-                    android:layout_height="@dimen/_9sdp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/circle" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/black" />
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".2"
-                android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:src="@drawable/pipediv"/>
 
-                <ImageView
-                    android:layout_width="@dimen/_9sdp"
-                    android:layout_height="@dimen/_9sdp"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/circle" />
-            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
-
-    <com.blucor.vsfarm.customecomponent.CustomTextView
-        android:text="Thank you for shopping with us. "
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:font_name="NunitoExtraBold.ttf"
-        android:textColor="#111111"
-        android:gravity="left"
-        android:textSize="@dimen/_20sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.blucor.vsfarm.customecomponent.CustomTextView
-        android:text="Please check your email for order confirmation and detailed delivery information."
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_5sdp"
-        app:font_name="NunitoSemiBold.ttf"
-        android:textColor="#3B3B3B"
-        android:gravity="left"
-        android:textSize="@dimen/_12sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <androidx.cardview.widget.CardView
-        app:cardElevation="@dimen/_2sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="All"
+                android:textSize="@dimen/_18sdp"
+                android:textColor="#000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Bank Details"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="#FA0A0A"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_below="@+id/view"
+            android:layout_centerHorizontal="true"
+            android:background="@color/grey_300" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_height="match_parent">
 
             <LinearLayout
@@ -145,6 +106,15 @@
                 android:background="@color/white_off"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_below="@+id/view"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/grey_300" />
+
                 <LinearLayout
                     android:weightSum="2"
                     android:orientation="horizontal"
@@ -154,11 +124,10 @@
                     <com.blucor.vsfarm.customecomponent.CustomTextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:layout_gravity="center_horizontal"
-                        android:text="Order Number:"
+                        android:text="Bank Holder Name"
                         android:textColor="@color/grey_900"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoRegular.ttf" />
@@ -166,7 +135,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="498585"
+                        android:text="V.S.FARM AGRI SOLUTION TRADERS"
                         android:id="@+id/tvOrderNumber"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
@@ -182,9 +151,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="Purchase Date:"
+                        android:text="Bank Name"
                         android:textColor="@color/grey_900"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoRegular.ttf" />
@@ -193,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/tvDate"
                         android:layout_weight="1"
-                        android:text="22-Aug-2020, 02:39PM"
+                        android:text="ORIENTAL BANK OF COMMERCE"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoSemiBold.ttf" />
@@ -208,9 +176,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="Billing Email:"
+                        android:text="Branch Name"
                         android:textColor="@color/grey_900"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoRegular.ttf" />
@@ -219,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/tvEmail"
-                        android:text="sitansu@gmail.com"
+                        android:text="MANCHAR"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoSemiBold.ttf" />
@@ -234,9 +201,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="Order Total:"
+                        android:text="Bank Account No."
                         android:textColor="@color/grey_900"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoRegular.ttf" />
@@ -245,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/tvOrderTotal"
-                        android:text="2300"
+                        android:text="18024011000162"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoSemiBold.ttf" />
@@ -260,9 +226,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:layout_marginLeft="@dimen/_10sdp"
                         android:layout_weight="1"
-                        android:text="Payment Method:"
+                        android:text="IFSC Code"
                         android:textColor="@color/grey_900"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoRegular.ttf" />
@@ -270,7 +235,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="COD"
+                        android:text="ORBC0101802"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         app:font_name="NunitoSemiBold.ttf" />
@@ -281,27 +246,10 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <com.blucor.vsfarm.customecomponent.CustomTextView
-        android:id="@+id/tvViewOrder"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_32sdp"
-        android:layout_below="@+id/tvForgotPassword"
-        android:layout_marginLeft="@dimen/_35sdp"
-        android:layout_marginTop="@dimen/_88sdp"
-        android:layout_marginRight="@dimen/_35sdp"
-        android:background="@drawable/capsule"
-        android:backgroundTint="@color/colorPrimary"
-        android:elevation="@dimen/_20sdp"
-        android:gravity="center"
-        android:text="VIEW ORDER"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp" />
+
     </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

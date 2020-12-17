@@ -132,7 +132,6 @@ public class AddAddressFragment extends Fragment {
 
                     if(jsonObject.getString("success").equalsIgnoreCase("1"))
                     {
-
                         preferences.set("address",jsonObject.getString("address"));
                         preferences.commit();
                         replaceFragmentWithAnimation(new CheckoutFragment());

@@ -12,7 +12,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_130sdp">
+        android:layout_height="@dimen/_150sdp">
         <ImageView
             android:padding="@dimen/_5sdp"
             android:id="@+id/cart_item_image"
@@ -74,7 +74,7 @@
                 android:layout_weight="2"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="Size:"
@@ -88,7 +88,7 @@
                     android:layout_marginLeft="@dimen/_20sdp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="#333333"
-                    android:singleLine="false"
+                    android:singleLine="true"
                     app:font_name="NunitoRegular.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -137,7 +137,7 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <com.blucor.vsfarm.customecomponent.CustomTextView
@@ -193,7 +193,7 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:padding="@dimen/_5sdp"
-                        app:srcCompat="@drawable/ic_baseline_check_24"
+                        app:srcCompat="@drawable/ic_baseline_check_circle_24"
                         android:background="@null"
                         tools:ignore="VectorDrawableCompat"/>
 
@@ -230,7 +230,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView

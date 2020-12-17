@@ -1,5 +1,6 @@
 package com.blucor.vsfarm.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -139,7 +140,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.e("forgot password",response);
 
                 ProgressForgotPassword();
-
                 //Toasty.normal(LoginActivity.this, "Check your Email!Password has been sent to your Email!", Toast.LENGTH_LONG).show();
 
             }
@@ -282,10 +282,56 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view){
         switch(view.getId()){
         case R.id.tvSignupbtn:
-        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
-        overridePendingTransition(R.anim.slide_left,R.anim.slide_right);
+            SignUpPopUp();
+//        startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+//        overridePendingTransition(R.anim.slide_left,R.anim.slide_right);
         break;
-
         }
+    }
+
+    private void SignUpPopUp() {
+        final Dialog dialog = new Dialog(this, android.R.style.Theme_Translucent_NoTitleBar);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.reg_popup);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+        window.setAttributes(wlp);
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.show();
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+
+
+        //findId
+        TextView tvUser = (TextView) dialog.findViewById(R.id.tvUserReg);
+        TextView tvDealer = (TextView) dialog.findViewById(R.id.tvDealerReg);
+
+        //set value
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog.show();
+
+        //set listener
+        tvUser.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
+                overridePendingTransition(R.anim.slide_left,R.anim.slide_right);
+                dialog.dismiss();
+            }
+        });
+
+        tvDealer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,DealerRegistration.class));
+                overridePendingTransition(R.anim.slide_left,R.anim.slide_right);
+                dialog.dismiss();
+            }
+        });
+
     }
 }
