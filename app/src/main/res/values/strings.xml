@@ -32,4 +32,7 @@
     <string name="passwordtext">Dear Customer\n Your password has been sent to your registered email id.\n Please check your email for confirmation and Do not share it to others.</string>
     <string name="invalid_state">Please enter state</string>
     <string name="thankyou">Thank you for joining hands with VS Farma.</string>
+    <string name="privacy">Terms and Conditions</string>
+    <string name="Rateus">Rate Us</string>
+    <string name="refund">Refund Policy</string>
 </resources>

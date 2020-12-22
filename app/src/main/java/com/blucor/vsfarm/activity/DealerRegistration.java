@@ -49,12 +49,11 @@ public class DealerRegistration extends AppCompatActivity {
     private EditText editTextGstNo;
 
 
-
     AwesomeValidation awesomeValidation;
     Dialog dialog;
 
     private Button buttonRegister;
-    public static final String URL = "http://vsfastirrigation.com/webservices/registration.php";
+    public static final String dealer_URL = "http://vsfastirrigation.com/webservices/dealer_registration.php";
 
     //Preferences
     Preferences preferences;
@@ -133,7 +132,7 @@ public class DealerRegistration extends AppCompatActivity {
     }
 
     private void Validation() {
-            StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, dealer_URL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     dialog.cancel();
@@ -156,7 +155,11 @@ public class DealerRegistration extends AppCompatActivity {
                     parameters.put("email", editEmail.getText().toString());
                     parameters.put("contact", editContact.getText().toString());
                     parameters.put("address", editAddress.getText().toString());
+                    parameters.put("state",editTextState.getText().toString());
+                    parameters.put("gst_number",editTextGstNo.getText().toString());
                     parameters.put("password", editTextPassword.getText().toString());
+                    parameters.put("user_type","dealer");
+
                     return parameters;
                 }
             };

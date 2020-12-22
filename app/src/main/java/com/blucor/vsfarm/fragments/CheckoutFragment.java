@@ -250,6 +250,8 @@ public class CheckoutFragment extends Fragment {
                         preferences.set("order_id",jsonObject.getString("order_id"));
                         preferences.set("order_date",jsonObject.getString("order_date"));
                         preferences.set("order_total",jsonObject.getString("order_total"));
+                        preferences.set("gst_price",jsonObject.getString("gst_price"));
+                        preferences.set("total_orderPrice",jsonObject.getString("total_orderPrice"));
                         preferences.commit();
                     }
 
@@ -269,8 +271,12 @@ public class CheckoutFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("user_id",preferences.get("user_id"));
-                parameters.put("order_total", String.valueOf(finalResult));
-                parameters.put("subtotal", String.valueOf(result));
+                parameters.put("order_total", String.valueOf(Total_price));
+                //parameters.put("subtotal", String.valueOf(result));
+                parameters.put("gst_price",String.valueOf(resulOfGst));
+                parameters.put("total_orderPrice",String.valueOf(finalResult));
+
+
                 Log.e("check","wwww"+parameters);
                 return parameters;
             }
@@ -318,7 +324,7 @@ public class CheckoutFragment extends Fragment {
                         double qty=Double.parseDouble(product_qnty);
 
                         Total_price = Total_price + ( price* qty);
-                        resulOfGst=(Total_price/100.0f) * 5;
+                        resulOfGst=(Total_price/100.0f) * 3;
                         Log.e("gst",""+resulOfGst);
                         tvGST.setText(String.valueOf( "\u20b9"+resulOfGst));
 

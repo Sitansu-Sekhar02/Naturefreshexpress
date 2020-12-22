@@ -50,7 +50,7 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    if (preferences.get("usertype").equals("Admin")){
+                    if (preferences.get("usertype").equals("customer")){
 
                         Intent i = new Intent(SplashActivity.this, AdminDashActivity.class);
                         startActivity(i);

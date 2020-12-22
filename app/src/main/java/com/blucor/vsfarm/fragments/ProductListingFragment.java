@@ -110,7 +110,7 @@ public class ProductListingFragment extends Fragment {
     ProductAdapter mAdapter;
     //public static final String cart = "http://vsfarma.blucorsys.in/cartItem.php";
     public static final String cart = "http://vsfastirrigation.com/webservices/update_qty.php";
-    public static final String url = "http://vsfastirrigation.com/webservices/getrow.php";
+    public static final String url = "http://vsfastirrigation.com/webservices/row.php";
 
     private List<CategoryProducts> productList;
     private List<CategoryProducts> list;
@@ -251,7 +251,7 @@ public class ProductListingFragment extends Fragment {
     private void filter(String toString) {
         List<CategoryProducts> temp = new ArrayList();
         for (CategoryProducts d : productList) {
-            if (d.getProduct_name().toLowerCase().contains(toString.toLowerCase())) {
+            if (d.getProduct_size().toLowerCase().contains(toString.toLowerCase())) {
                 temp.add(d);
             } else {
                 //noProduct.setVisibility(View.VISIBLE);
@@ -269,7 +269,7 @@ public class ProductListingFragment extends Fragment {
             public void onResponse(String response) {
                 dialog.cancel();
                 Log.e("response", response);
-                try {
+                /*try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (jsonObject.getString("success").equalsIgnoreCase("true")) {
                         JSONArray jsonArray = jsonObject.getJSONArray("Product");
@@ -283,7 +283,7 @@ public class ProductListingFragment extends Fragment {
                             String product_image = "http://vsfastirrigation.com/upload/cat_image/" + Object.getString("product_image");
                             JSONArray array = Object.getJSONArray("SizeArray");
                             Log.e("a", "jsonarrayresponse" + array);
-                            /* for(int j=0;j<array.length();j++){
+                            *//* for(int j=0;j<array.length();j++){
                                  JSONObject jsonObject1=array.getJSONObject(j);
                                  Log.e("array","jsonarray"+jsonObject1);
                                  String product_size=jsonObject1.getString("size");
@@ -294,7 +294,7 @@ public class ProductListingFragment extends Fragment {
                                  //product.setProduct_desc(product_desc);
 
 
-                             }*/
+                             }*//*
                             product.setArray(array);
                             product.setProduct_id(product_id);
                             product.setProduct_name(product_name);
@@ -309,10 +309,10 @@ public class ProductListingFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
 
 
-              /*  try{
+                try{
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -347,7 +347,7 @@ public class ProductListingFragment extends Fragment {
                 }
                 catch (JSONException e) {
                     Log.d("JSONException", e.toString());
-                }*/
+                }
             }
 
         }, new Response.ErrorListener() {
@@ -376,6 +376,7 @@ public class ProductListingFragment extends Fragment {
         TextView tvFinalprice;
         TextView tvProductName;
         TextView tvDesc;
+        TextView productSize;
         TextView tvQty;
         TextView cart_item_number;
         ImageView ivProductimage;
@@ -406,7 +407,8 @@ public class ProductListingFragment extends Fragment {
             llAddtocart = itemView.findViewById(R.id.llAddtocart);
             cart_quant_minus = itemView.findViewById(R.id.cart_quant_minus);
             cart_quant_add = itemView.findViewById(R.id.cart_quant_add);
-            spinner = itemView.findViewById(R.id.product_size);
+            //spinner = itemView.findViewById(R.id.product_size);
+            productSize=itemView.findViewById(R.id.product_size);
 
         }
     }
@@ -449,18 +451,20 @@ public class ProductListingFragment extends Fragment {
                     .load(mModel.get(position).getProduct_image())
                     .into(holder.ivProductimage);
             //holder.tvDesc.setText(mModel.get(position).getProduct_desc());
-            // holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
+            holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
             holder.tvDesc.setText(mModel.get(position).getProduct_id());
+            holder.productSize.setText(mModel.get(position).getProduct_size());
+
             //
-            Log.e("arraya", "" + mModel.get(position).getArray());
+            //Log.e("arraya", "" + mModel.get(position).getArray());
            /* holder.tvFinalprice.setText(list.get(position).getProduct_price());
             Log.e("pricess",""+list.get(position).getProduct_price());*/
 
             //JSONArray jsonArray = null;
             //getMatch newItemObject = null;
-            JSONArray jsonArray = mModel.get(position).getArray();
-            /*HashMap<String,String> map;
-            arrayList.clear();*/
+            /*JSONArray jsonArray = mModel.get(position).getArray();
+            *//*HashMap<String,String> map;
+            arrayList.clear();*//*
             //productList.clear();
             for (int j = 0; j < jsonArray.length(); j++) {
 
@@ -477,17 +481,17 @@ public class ProductListingFragment extends Fragment {
                     products.setProduct_size(product_size);
 
                     list.add(products);
-                   /* map.put("product_size",product_size);
+                   *//* map.put("product_size",product_size);
                     map.put("product_price",product_price);
-                    arrayList.add(map);*/
-                      /*  dataAdapter = new ArrayAdapter<ProductAdapter>(mContext,
+                    arrayList.add(map);*//*
+                      *//*  dataAdapter = new ArrayAdapter<ProductAdapter>(mContext,
                                 android.R.layout.simple_spinner_item, ProductAdapter.());
                         // Drop down layout style - list view with radio button
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
+                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*//*
                     // holder.spinner.setAdapter(new SpinnerAdapter(getContext(),R.layout.spinner_layout,productList));
-                   /* ArrayAdapter<HashMap<String,String>> dataAdapter =new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrayList);
+                   *//* ArrayAdapter<HashMap<String,String>> dataAdapter =new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, arrayList);
                     dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    holder.spinner.setAdapter(dataAdapter);*/
+                    holder.spinner.setAdapter(dataAdapter);*//*
                     //holder.spinner.setSelection(spinnerArrayList.get(position).product_size);
 
                 } catch (JSONException e) {
@@ -514,12 +518,12 @@ public class ProductListingFragment extends Fragment {
                     Log.e("p", "p" + p);
                     //Log.e("price","id_price"+size);
                     holder.tvFinalprice.setText(p);
-                   /* int position = adapterView.getSelectedItem(size);
+                   *//* int position = adapterView.getSelectedItem(size);
 
                     String myData = list.get(i).toString();
                     int position = dataAdapter.getPosition(myData);
-                    int position=adapterView.*/
-                   /* if (spinner_count == 1) {
+                    int position=adapterView.*//*
+                   *//* if (spinner_count == 1) {
                         spinner_count++;
 
                         //do nothing.
@@ -527,10 +531,10 @@ public class ProductListingFragment extends Fragment {
 
                         // write code on what you want to do with the item selection
                     }
-                }*/
+                }*//*
                     // String s = productList.get(i).getProduct_price();
-                       /* Log.e("price","id_price"+size);
-                        holder.tvFinalprice.setText(size);*/
+                       *//* Log.e("price","id_price"+size);
+                        holder.tvFinalprice.setText(size);*//*
 
 
                 }
@@ -539,7 +543,7 @@ public class ProductListingFragment extends Fragment {
                 public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
-            });
+            });*/
 
 
             holder.rlAddtocart.setOnClickListener(new View.OnClickListener() {
@@ -552,9 +556,12 @@ public class ProductListingFragment extends Fragment {
                     product_id = productList.get(position).getProduct_id();
                     product_name = productList.get(position).getProduct_name();
                     product_image = productList.get(position).getProduct_image();
-                    product_price = holder.tvFinalprice.getText().toString();
+                    product_price = productList.get(position).getProduct_price();
+                    product_size = productList.get(position).getProduct_size();
+
+                    // product_price = holder.tvFinalprice.getText().toString();
                     //Log.e("price","ird"+product_price);
-                    product_size = list.get(holder.spinner.getSelectedItemPosition()).getProduct_size();
+                   // product_size = list.get(holder.spinner.getSelectedItemPosition()).getProduct_size();
 
                 }
             });
@@ -643,7 +650,7 @@ public class ProductListingFragment extends Fragment {
                     filteredList.addAll(productList);
                 } else {
                     for (CategoryProducts product : productList) {
-                        if (product.getProduct_name().toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                        if (product.getProduct_size().toLowerCase().contains(charSequence.toString().toLowerCase())) {
                             filteredList.add(product);
                         }
                     }

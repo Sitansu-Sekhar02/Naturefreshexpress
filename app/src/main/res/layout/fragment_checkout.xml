@@ -701,7 +701,7 @@
                     <com.blucor.vsfarm.customecomponent.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Pay Online"
+                        android:text="Other Payment"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/black"
                         app:font_name="NunitoRegular.ttf"

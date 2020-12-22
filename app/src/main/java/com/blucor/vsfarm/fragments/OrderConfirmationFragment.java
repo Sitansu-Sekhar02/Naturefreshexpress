@@ -53,7 +53,7 @@ public class OrderConfirmationFragment extends Fragment {
         orderNumber.setText(preferences.get("order_id"));
         purchaseDate.setText(preferences.get("order_date"));
         billingMail.setText(preferences.get("useremail"));
-        tvOrderTotal.setText(preferences.get("order_total"));
+        tvOrderTotal.setText(preferences.get("total_orderPrice"));
 
         DrawerActivity.tvHeaderText.setText("Order Confirmation");
         DrawerActivity.iv_menu.setImageResource(R.drawable.ic_back);

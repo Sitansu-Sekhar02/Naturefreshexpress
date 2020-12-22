@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="@string/my_profile">
-        <menu>
 
             <item
                 android:id="@+id/my_orders"
@@ -13,15 +11,26 @@
                 android:id="@+id/my_cart"
                 android:icon="@drawable/ic_shopping_cart_black_24dp"
                 android:title="@string/my_cart" />
-           <!-- <item
-                android:id="@+id/my_account"
-                android:iconTint="@color/colorPrimary"
-                android:icon="@drawable/ic_person_black_24dp"
-                android:title="@string/my_account" />-->
             <item
                 android:id="@+id/info"
                 android:icon="@drawable/ic_baseline_info_24"
                 android:title="About Us" />
+            <item
+                android:id="@+id/privacy_policy"
+                android:iconTint="@color/colorPrimary"
+                android:icon="@drawable/ic_baseline_speaker_notes_24"
+                android:title="@string/privacy" />
+            <item
+                android:id="@+id/refund_policy"
+                android:iconTint="@color/colorPrimary"
+                android:icon="@drawable/ic_baseline_low_priority_24"
+                android:title="@string/refund" />
+            <item
+                android:id="@+id/rate_us"
+                android:iconTint="@color/colorPrimary"
+                android:icon="@drawable/ic_baseline_star_24"
+                android:title="@string/Rateus" />
+
             <item
                 android:id="@+id/share"
                 android:iconTint="@color/colorPrimary"
@@ -31,8 +40,7 @@
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_power_settings_new_black_24dp"
                 android:title="Logout" />
-        </menu>
-    </item>
+
     <item android:title="@string/help_support"
         android:visible="false">
         <menu>

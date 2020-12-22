@@ -136,6 +136,7 @@
                         android:drawableLeft="@drawable/ic_gst_number"
                         android:drawablePadding="@dimen/_5sdp"
                         android:id="@+id/etGstNo"
+                        android:imeOptions="actionNext"
                         android:textColor="@color/myblack"
                         app:font_name="NunitoLight.ttf"
                         android:textSize="@dimen/_14sdp"/>
@@ -158,8 +159,7 @@
                             android:drawablePadding="@dimen/_5sdp"
                             android:id="@+id/etState"
                             android:textColor="@color/myblack"
-                            android:inputType="phone"
-                            android:maxLength="10"
+                            android:inputType="text"
                             app:font_name="NunitoLight.ttf"
                             android:textSize="@dimen/_14sdp"/>
                     </LinearLayout>

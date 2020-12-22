@@ -151,6 +151,7 @@ public class SignUpActivity extends AppCompatActivity {
                     parameters.put("contact", editContact.getText().toString());
                     parameters.put("address", editAddress.getText().toString());
                     parameters.put("password", editTextPassword.getText().toString());
+                    parameters.put("user_type","customer");
                     return parameters;
                 }
             };

@@ -19,7 +19,7 @@ import com.blucor.vsfarm.extra.Preferences;
 
 public class OrderDetailsFragment extends Fragment {
     TextView orderId,tvOrderDate,tvProductName,tvOrderTotal,productpriceDetails;
-    TextView tvName,tvAddress,tvMobile,tvSize,productSizee;
+    TextView tvName,tvAddress,tvMobile,tvSize,product_sizes;
     View v;
     Preferences preferences;
     String contact;
@@ -38,7 +38,7 @@ public class OrderDetailsFragment extends Fragment {
         tvAddress=v.findViewById(R.id.tvAddress);
         tvMobile=v.findViewById(R.id.tvContact);
         tvSize=v.findViewById(R.id.tvSize);
-        productSizee=v.findViewById(R.id.productSizee);
+        product_sizes=v.findViewById(R.id.sizeOf_product);
         productpriceDetails=v.findViewById(R.id.product_price);
 
         DrawerActivity.iv_menu.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +61,12 @@ public class OrderDetailsFragment extends Fragment {
         String product_price=b.getString("product_price");
         String product_size=b.getString("product_size");
 
+
         tvSize.setText(order_qnty);
         orderId.setText("#"+order_id);
         tvOrderDate.setText(order_date);
         tvProductName.setText(order_name);
-        productSizee.setText(product_size);
+        product_sizes.setText(product_size);
         Log.e("size","sss"+product_size);
         productpriceDetails.setText("\u20b9 " +product_price);
 
@@ -78,7 +79,6 @@ public class OrderDetailsFragment extends Fragment {
     }
     public void replaceFragmentWithAnimation(Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-
         transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.replace(R.id.main_fragment_container, fragment);
         transaction.commit();

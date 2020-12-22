@@ -195,27 +195,61 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_height="match_parent">
 
             <TextView
                 android:layout_width="match_parent"
                 android:text="Product Name"
-                android:textSize="@dimen/_13sdp"
-                android:textColor="#6A5A8C"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="#0E0E0E"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_height="@dimen/_25sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:background="#989696"
+                    android:layout_marginRight="@dimen/_35sdp"
+                    android:layout_marginLeft="@dimen/_35sdp"
+                    android:layout_height="0.5dp"/>
             <TextView
                 android:id="@+id/tvProductName"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:layout_width="match_parent"
                 android:text="16*4*40(KOTHARI)k-smart."
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textSize="@dimen/_12sdp"
                 android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Size"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="#0E0E0E"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_height="@dimen/_25sdp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:background="#989696"
+                    android:layout_marginRight="@dimen/_35sdp"
+                    android:layout_marginLeft="@dimen/_35sdp"
+                    android:layout_height="0.5dp"/>
+
+                <TextView
+                    android:id="@+id/product_size"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_width="match_parent"
+                    android:text="16*4*40(KOTHARI)k-smart."
+                    android:textStyle="bold"
+                    android:background="@drawable/size_border"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:textColor="#048BC8"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"/>
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/_25sdp"
                     android:layout_marginRight="@dimen/_25sdp"
                     android:layout_width="match_parent"
@@ -223,7 +257,6 @@
                     android:background="@drawable/button_adproduct"
                     android:layout_marginTop="@dimen/_15sdp">
                     <Spinner
-                        android:id="@+id/product_size"
                         android:layout_width="match_parent"
                         android:singleLine="true"
                         android:textAlignment="center"

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -173,6 +174,17 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
 
         else if (id == R.id.info) {
             replaceFragmentWithAnimation(new AboutUsFragment());
+        }
+        else if (id == R.id.privacy_policy) {
+            //replaceFragmentWithAnimation(new AboutUsFragment());
+        }
+        else if (id == R.id.refund_policy) {
+            //replaceFragmentWithAnimation(new AboutUsFragment());
+        }
+        else if (id == R.id.rate_us) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.blucor.vsfarm"));
+            startActivity(intent);
+
         }
         else if (id == R.id.share) {
             Intent shareIntent =   new Intent(Intent.ACTION_SEND);
