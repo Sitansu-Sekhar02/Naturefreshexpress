@@ -17,7 +17,7 @@
         android:id="@+id/ivAppName"
         android:text="VS Farma"
         android:fontFamily="cursive"
-        android:textSize="@dimen/_40sdp"
+        android:textSize="@dimen/_50sdp"
         android:textStyle="bold"
         android:textColor="#106112"
         android:layout_centerHorizontal="true"
@@ -32,6 +32,6 @@
         android:gravity="center"
         android:text="@string/care"
         android:textColor="@color/colorfont1"
-        android:textSize="@dimen/_14sdp" />
+        android:textSize="@dimen/_18sdp" />
 
 </RelativeLayout>

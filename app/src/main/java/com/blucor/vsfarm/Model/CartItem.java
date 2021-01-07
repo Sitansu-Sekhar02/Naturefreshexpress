@@ -9,10 +9,11 @@ public class CartItem {
     private  String product_price;
     private  String product_quantity;
     private  String product_size;
+    private  String tax_rate;
 
 
 
-    public CartItem(String cart_id, String product_id, String user_id, String product_name, String product_image, String product_price, String product_quantity,String product_size) {
+    public CartItem(String cart_id, String product_id, String user_id, String product_name, String product_image, String product_price, String product_quantity,String product_size,String tax_rate) {
         this.cart_id = cart_id;
         this.product_id = product_id;
         this.user_id = user_id;
@@ -21,6 +22,7 @@ public class CartItem {
         this.product_price = product_price;
         this.product_quantity = product_quantity;
         this.product_size = product_size;
+        this.tax_rate=tax_rate;
 
 
 
@@ -91,5 +93,13 @@ public class CartItem {
 
     public void setProduct_size(String product_size) {
         this.product_size = product_size;
+    }
+
+    public String getTax_rate() {
+        return tax_rate;
+    }
+
+    public void setTax_rate(String tax_rate) {
+        this.tax_rate = tax_rate;
     }
 }

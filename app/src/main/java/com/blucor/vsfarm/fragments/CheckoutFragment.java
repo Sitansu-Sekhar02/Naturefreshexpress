@@ -53,6 +53,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +100,13 @@ public class CheckoutFragment extends Fragment {
     double resulOfGst;
     double finalResult;
     ImageView payment_popup;
+
+    double tax_prod_price=0.0;
+
+    double finalProductPrice=0.0;
+
+    double prod_finalPrice=0.0;
+
 
 
     //Preference
@@ -271,11 +279,11 @@ public class CheckoutFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("user_id",preferences.get("user_id"));
-                parameters.put("order_total", String.valueOf(Total_price));
+                //parameters.put("product_price", String.valueOf(tax_prod_price));
+                parameters.put("order_total", String.valueOf(new DecimalFormat("##.##").format(finalResult)));
                 //parameters.put("subtotal", String.valueOf(result));
-                parameters.put("gst_price",String.valueOf(resulOfGst));
-                parameters.put("total_orderPrice",String.valueOf(finalResult));
-
+                //parameters.put("gst_price",String.valueOf("resulOfGst"));
+               // parameters.put("total_orderPrice",String.valueOf(finalResult));
 
                 Log.e("check","wwww"+parameters);
                 return parameters;
@@ -306,6 +314,8 @@ public class CheckoutFragment extends Fragment {
                         String product_image=jsonObject.getString("product_image");
                         String product_qnty=jsonObject.getString("product_quantity");
                         String product_size=jsonObject.getString("product_size");
+                        String tax_rate=jsonObject.getString("tax_rate");
+
 
                         String res= product_image.replace("//","");
                         //Log.e("responsee",""+res);
@@ -318,26 +328,42 @@ public class CheckoutFragment extends Fragment {
                         cart.setProduct_price(product_price);
                         cart.setProduct_quantity(product_qnty);
                         cart.setProduct_size(product_size);
+                        cart.setTax_rate(tax_rate);
+
                         cartList.add(cart);
 
                         double price=Double.parseDouble(product_price);
                         double qty=Double.parseDouble(product_qnty);
 
-                        Total_price = Total_price + ( price* qty);
-                        resulOfGst=(Total_price/100.0f) * 3;
-                        Log.e("gst",""+resulOfGst);
-                        tvGST.setText(String.valueOf( "\u20b9"+resulOfGst));
+                        double tax=Double.parseDouble(tax_rate);
 
-                        finalResult=Total_price+resulOfGst;
+                        prod_finalPrice=(price*tax)/100;
+                        DecimalFormat df = new DecimalFormat("##.###");
+
+
+                        tax_prod_price=prod_finalPrice+price;
+                        Log.e("tax",""+prod_finalPrice);
+
+                        finalProductPrice= Double.parseDouble(String.valueOf(tax_prod_price));
+
+
+                        Total_price = Total_price + (tax_prod_price* qty);
+                        //resulOfGst=(Total_price/100.0f) * 3;
+                       // Log.e("gst",""+resulOfGst);
+                        //tvGST.setText(String.valueOf( "\u20b9"+resulOfGst));
+
+                        finalResult=finalResult + (tax_prod_price* qty);
 
                         Log.e("price add",""+Total_price);
                         //checkoutPrice.setText(String.valueOf( Total_price));
-                        checkoutPrice.setText("Total Amount \u20b9" +finalResult);
+                        checkoutPrice.setText("Total Amount \u20b9"+df.format(finalResult));
                         Log.e("total price","price"+finalResult);
 
                          //tvGST.setText((int) resulOfGst);
                     }
-                    totalAmount.setText("\u20b9 " +Total_price);
+                    DecimalFormat df = new DecimalFormat("##.###");
+
+                    totalAmount.setText("\u20b9"+df.format(Total_price));
 
                     setAdapter();
                 }
@@ -465,11 +491,31 @@ public class CheckoutFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final CartHolder holder, final int position) {
 
+            tax_prod_price= Double.parseDouble(prod_finalPrice+mModel.get(position).getProduct_price());
+            Log.e("tax",""+prod_finalPrice);
+            double qty=Double.parseDouble(mModel.get(position).getProduct_quantity());
+            double price=Double.parseDouble(mModel.get(position).getProduct_price());
+            double tax=Double.parseDouble(mModel.get(position).getTax_rate());
+
+            prod_finalPrice=(price*tax)/100;
+
+            tax_prod_price=prod_finalPrice+price;
+
+
+
+            double  pro_pric= Double.parseDouble(String.valueOf(tax_prod_price));
+            Log.e("pro_pric",""+pro_pric);
+
+            //Log.e("fff",""+finalProductPrice);
+
+            Total_price = Total_price + (tax_prod_price* qty);
+
             holder.tvProductName.setText(mModel.get(position).getProduct_name());
+
             Glide.with(mContext)
                     .load(mModel.get(position).getProduct_image())
                     .into(holder.cart_item_image);
-            holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
+            holder.tvFinalprice.setText(String.valueOf(pro_pric));
             holder.tvcartProductSize.setText(mModel.get(position).getProduct_size());
 
             holder.productQuantity.setText(mModel.get(position).getProduct_quantity());
@@ -481,13 +527,17 @@ public class CheckoutFragment extends Fragment {
             holder.checkquantity.setVisibility(View.GONE);
 
             //calculate product price with qnty
-            double productprice;
-            double qnty;
-            productprice = Double.parseDouble(mModel.get(position).getProduct_price());
-            qnty = Double.parseDouble(mModel.get(position).getProduct_quantity());
-            result=productprice*qnty;
-            Log.e("result",""+result);
-            holder.qntyPrice.setText("\u20b9" +result);
+            double productprice = Double.parseDouble(mModel.get(position).getProduct_price());
+            double qnty = Double.parseDouble(mModel.get(position).getProduct_quantity());
+            result=pro_pric*qnty;
+
+            DecimalFormat df = new DecimalFormat("##.###");
+
+
+            Log.e("11productprice",""+productprice);
+            Log.e("11qnty",""+qnty);
+            Log.e("11result",""+result);
+            holder.qntyPrice.setText("\u20b9" + df.format(result));
 
 
             holder.cart_quant_add.setOnClickListener(new View.OnClickListener() {

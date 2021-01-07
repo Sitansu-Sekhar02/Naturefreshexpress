@@ -574,8 +574,8 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:paddingLeft="@dimen/_10sdp"
-                            android:text="GST"
-                            android:textColor="@color/black"
+                            android:text="GST Included."
+                            android:textColor="#F10E0E"
                             android:textSize="@dimen/_10sdp"
                             app:font_name="NunitoBold.ttf" />
 

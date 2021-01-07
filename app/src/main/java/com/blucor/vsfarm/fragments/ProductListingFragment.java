@@ -88,6 +88,8 @@ public class ProductListingFragment extends Fragment {
     String product_image;
     String product_price;
     String product_size;
+    String tax_rate;
+    String product_final_price;
 
 
     String product_qnty;
@@ -323,7 +325,13 @@ public class ProductListingFragment extends Fragment {
                         String product_id=jsonObject.getString("id");
                         String product_name=jsonObject.getString("product_name");
                         String product_price=jsonObject.getString("product_price");
+                        String dealer_price=jsonObject.getString("dealer_price");
+
                         String product_size=jsonObject.getString("product_size");
+                        String avl_qty=jsonObject.getString("avl_qty");
+                        String tax_Rate=jsonObject.getString("tax_rate");
+
+
                         String product_image="http://vsfastirrigation.com/upload/cat_image/"+jsonObject.getString("product_image");
 
                         //String product_desc=jsonObject.getString("product_desc");
@@ -333,10 +341,19 @@ public class ProductListingFragment extends Fragment {
                         product.setCategory_id(category_id);
                         product.setProduct_id(product_id);
                         product.setProduct_name(product_name);
+                        product.setAvl_qt("Avl Qty:"+avl_qty);
+                        product.setTax_rate(tax_Rate);
                         product.setProduct_image(product_image);
-                        product.setProduct_price(product_price);
-                        product.setProduct_size(product_size);
+                        if(preferences.get("usertype").equalsIgnoreCase("customer")){
 
+                            product.setProduct_price(product_price);
+
+                        }else{
+
+                            product.setProduct_price(dealer_price);
+
+                        }
+                        product.setProduct_size(product_size);
 
                         //product.setProduct_desc(product_desc);
 
@@ -380,6 +397,7 @@ public class ProductListingFragment extends Fragment {
         TextView tvQty;
         TextView cart_item_number;
         ImageView ivProductimage;
+        TextView avl_qty;
         Spinner spinner;
 
         ImageButton cart_quant_minus;
@@ -407,6 +425,7 @@ public class ProductListingFragment extends Fragment {
             llAddtocart = itemView.findViewById(R.id.llAddtocart);
             cart_quant_minus = itemView.findViewById(R.id.cart_quant_minus);
             cart_quant_add = itemView.findViewById(R.id.cart_quant_add);
+            avl_qty=itemView.findViewById(R.id.available_qty);
             //spinner = itemView.findViewById(R.id.product_size);
             productSize=itemView.findViewById(R.id.product_size);
 
@@ -453,6 +472,7 @@ public class ProductListingFragment extends Fragment {
             //holder.tvDesc.setText(mModel.get(position).getProduct_desc());
             holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
             holder.tvDesc.setText(mModel.get(position).getProduct_id());
+            holder.avl_qty.setText(mModel.get(position).getAvl_qt());
             holder.productSize.setText(mModel.get(position).getProduct_size());
 
             //
@@ -558,6 +578,8 @@ public class ProductListingFragment extends Fragment {
                     product_image = productList.get(position).getProduct_image();
                     product_price = productList.get(position).getProduct_price();
                     product_size = productList.get(position).getProduct_size();
+                    tax_rate = productList.get(position).getTax_rate();
+
 
                     // product_price = holder.tvFinalprice.getText().toString();
                     //Log.e("price","ird"+product_price);
@@ -762,6 +784,12 @@ public class ProductListingFragment extends Fragment {
                 param.put("product_price", product_price);
                 param.put("product_size", product_size);
                 param.put("product_quantity", qty);
+                param.put("tax_rate", tax_rate);
+               // param.put("product_final_price", "product_final_price");
+               // param.put("sub", "product_final_price");
+
+
+
                 Log.e("msg", "parameters" + param);
                 return param;
             }

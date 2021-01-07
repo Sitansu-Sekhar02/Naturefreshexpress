@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -96,7 +97,6 @@ public class DashboardFragment extends Fragment {
     };
 
     public static final String JSON_URL = "http://vsfastirrigation.com/webservices/category.php";
-
 
     private List<CategoryModel> categoryList;
     private ProductCategoryAdapter adapter;
@@ -240,7 +240,7 @@ public class DashboardFragment extends Fragment {
 
     private void jsonRequest() {
        //refreshLayout.setRefreshing(true);
-        StringRequest request = new StringRequest(JSON_URL, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST,JSON_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e("response1",response);

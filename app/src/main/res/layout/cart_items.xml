@@ -12,7 +12,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp">
+        android:layout_height="@dimen/_160sdp">
         <ImageView
             android:padding="@dimen/_5sdp"
             android:id="@+id/cart_item_image"
@@ -64,7 +64,7 @@
                     android:layout_marginLeft="@dimen/_4sdp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="#333333"
-                    android:singleLine="false"
+                    android:singleLine="true"
                     app:font_name="NunitoRegular.ttf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -157,7 +157,7 @@
                     android:id="@+id/price"
                     android:layout_marginTop="@dimen/_1sdp"
                     android:layout_gravity="center_vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_50sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_2sdp"
                     android:layout_centerVertical="true"
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_4sdp">
                     <com.blucor.vsfarm.customecomponent.CustomTextView
-                        android:text="Quantity:"
+                        android:text="Qty:"
                         android:textSize="@dimen/_11sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"/>
@@ -253,6 +253,20 @@
                     android:text="0"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11sdp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#FF6A6A"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="(GST Included)"/>
 
             </LinearLayout>
         </LinearLayout>

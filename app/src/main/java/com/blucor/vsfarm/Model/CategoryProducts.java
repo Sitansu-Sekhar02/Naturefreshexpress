@@ -11,13 +11,15 @@ public class CategoryProducts {
     private  String product_price;
     private  String product_desc;
     private  String product_size;
+    private  String avl_qt;
+    private  String tax_rate;
     private JSONArray array;
 
     public CategoryProducts() {
 
 
     }
-    public CategoryProducts(String category_id,String product_id, String user_id,String product_name, String product_image, String product_price, String product_desc,String product_size) {
+    public CategoryProducts(String category_id,String product_id, String user_id,String product_name, String product_image, String product_price, String product_desc,String product_size,String avl_qt,String tax_rate) {
         this.category_id = category_id;
         this.product_id = product_id;
         this.user_id=user_id;
@@ -26,6 +28,8 @@ public class CategoryProducts {
         this.product_price = product_price;
         this.product_desc = product_desc;
         this.product_size=product_size;
+        this.avl_qt=avl_qt;
+        this.tax_rate=tax_rate;
     }
     public String getCategory_id() {
         return category_id;
@@ -93,5 +97,21 @@ public class CategoryProducts {
 
     public void setArray(JSONArray array) {
         this.array = array;
+    }
+
+    public String getAvl_qt() {
+        return avl_qt;
+    }
+
+    public void setAvl_qt(String avl_qt) {
+        this.avl_qt = avl_qt;
+    }
+
+    public String getTax_rate() {
+        return tax_rate;
+    }
+
+    public void setTax_rate(String tax_rate) {
+        this.tax_rate = tax_rate;
     }
 }

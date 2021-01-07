@@ -214,7 +214,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             String address=user.getString("address");
                             String contact=user.getString("contact");
 
-
                             preferences.set("user_id",user_id);
                             preferences.set("useremail",useremail);
                             preferences.set("password",password);
@@ -225,7 +224,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             preferences.commit();
 
-                            if (user_type.equals("Admin")){
+
+                            Intent in=new Intent(LoginActivity.this,DrawerActivity.class);
+                            startActivity(in);
+
+                          /*  if (user_type.equals("Admin")){
                                 Intent i=new Intent(LoginActivity.this,AdminDashActivity.class);
                                 startActivity(i);
 
@@ -233,7 +236,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Intent in=new Intent(LoginActivity.this,DrawerActivity.class);
                                 startActivity(in);
 
-                            }
+                            }*/
                         }
                         else{
                             Toasty.warning(getApplicationContext(), "Wrong userId or password", Toast.LENGTH_SHORT).show();

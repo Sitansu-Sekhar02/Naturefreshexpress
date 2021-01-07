@@ -239,13 +239,10 @@ public class DrawerActivity extends AppCompatActivity implements NavigationView.
                 TextView tvUserContact = (TextView) navigationView.findViewById(R.id.NavuserContact);
 
                 tvUsername.setText(preferences.get("name"));
-                tvUserContact.setText(preferences.get("contact"));
+                tvUserContact.setText("+91-"+preferences.get("contact"));
 
             }
         });
-
-
-
 
 
         //pref

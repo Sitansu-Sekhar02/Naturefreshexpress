@@ -50,7 +50,11 @@ public class SplashActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    if (preferences.get("usertype").equals("customer")){
+
+                    Intent intent = new Intent(SplashActivity.this, DrawerActivity.class);
+                    startActivity(intent);
+
+                   /* if (preferences.get("usertype").equals("customer")){
 
                         Intent i = new Intent(SplashActivity.this, AdminDashActivity.class);
                         startActivity(i);
@@ -58,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(SplashActivity.this, DrawerActivity.class);
                         startActivity(intent);
-                    }
+                    }*/
                 }
 
                 overridePendingTransition(R.anim.slide_left, R.anim.slide_right);

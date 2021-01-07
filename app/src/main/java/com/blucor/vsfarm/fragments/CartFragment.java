@@ -51,6 +51,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +69,12 @@ public class CartFragment extends Fragment {
     Preferences preferences;
     int final_price= 0;
     double Total_price=0.0;
+    double tax_prod_price=0.0;
+
+    double finalProductPrice=0.0;
+
+
+    double prod_finalPrice=0.0;
 
     String product_id;
     String cart_id;
@@ -200,6 +207,7 @@ public class CartFragment extends Fragment {
                         String product_image=jsonObject.getString("product_image");
                         String product_qnty=jsonObject.getString("product_quantity");
                         String product_size=jsonObject.getString("product_size");
+                        String tax_rate=jsonObject.getString("tax_rate");
 
                         String res= product_image.replace("//","");
                         //Log.e("responsee",""+res);
@@ -212,16 +220,27 @@ public class CartFragment extends Fragment {
                         cart.setProduct_price(product_price);
                         cart.setProduct_quantity(product_qnty);
                         cart.setProduct_size(product_size);
+                        cart.setTax_rate(tax_rate);
                         cartList.add(cart);
 
                         double price=Double.parseDouble(product_price);
                         double qty=Double.parseDouble(product_qnty);
+                        double tax=Double.parseDouble(tax_rate);
 
-                        Total_price = Total_price + ( price* qty);
+                        prod_finalPrice=(price*tax)/100;
+                        tax_prod_price=prod_finalPrice+price;
+                        Log.e("tax",""+prod_finalPrice);
+
+                        finalProductPrice= Double.parseDouble(String.valueOf(tax_prod_price));
+
+                        Log.e("fff",""+finalProductPrice);
+                        DecimalFormat df = new DecimalFormat("##.###");
+
+                        Total_price = Total_price + (tax_prod_price* qty);
                         Log.e("price add",""+Total_price);
                         tvCartPrice.setText(String.valueOf( Total_price));
-                        tvCartPrice.setText("Total Amount \u20b9" +Total_price);
-                        Log.e("total price","price"+Total_price);
+                        tvCartPrice.setText("Total Amount \u20b9"+df.format(Total_price));
+                       // ,String.format("%.2f"
 
                     }
 
@@ -322,22 +341,59 @@ public class CartFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final Holder holder, final int position) {
 
+            /*double price=Double.parseDouble(product_price);
+            double qty=Double.parseDouble(product_qnty);
+            double tax=Double.parseDouble(tax_rate);
+
+            prod_finalPrice=(price*tax)/100;
+
+            tax_prod_price=prod_finalPrice+price;
+            Log.e("tax",""+prod_finalPrice);
+
+            finalProductPrice= Double.parseDouble(String.valueOf(tax_prod_price));
+
+            Log.e("fff",""+finalProductPrice);
+
+            Total_price = Total_price + (tax_prod_price* qty);*/
+
+
+            tax_prod_price= Double.parseDouble(prod_finalPrice+mModel.get(position).getProduct_price());
+            Log.e("tax",""+prod_finalPrice);
+            double qty=Double.parseDouble(mModel.get(position).getProduct_quantity());
+            double price=Double.parseDouble(mModel.get(position).getProduct_price());
+            double tax=Double.parseDouble(mModel.get(position).getTax_rate());
+
+            prod_finalPrice=(price*tax)/100;
+            tax_prod_price=prod_finalPrice+price;
+
+
+            double  pro_pric= Double.parseDouble(String.valueOf(tax_prod_price));
+            Log.e("pro_pric",""+pro_pric);
+
+            //Log.e("fff",""+finalProductPrice);
+
+            Total_price = Total_price + (tax_prod_price* qty);
+
             holder.tvProductName.setText(mModel.get(position).getProduct_name());
             Glide.with(mContext)
                     .load(mModel.get(position).getProduct_image())
                     .into(holder.cart_item_image);
-            holder.tvFinalprice.setText(mModel.get(position).getProduct_price());
+            holder.tvFinalprice.setText(String.valueOf(pro_pric));
             holder.tvcartProductSize.setText(mModel.get(position).getProduct_size());
             holder.productQuantity.setText(mModel.get(position).getProduct_quantity());
 
+
+
             double productprice = Double.parseDouble(mModel.get(position).getProduct_price());
             double qnty = Double.parseDouble(mModel.get(position).getProduct_quantity());
-            result=productprice*qnty;
+            result=pro_pric*qnty;
 
             Log.e("11productprice",""+productprice);
             Log.e("11qnty",""+qnty);
             Log.e("11result",""+result);
-            holder.qntyPrice.setText("\u20b9" +result);
+            DecimalFormat df = new DecimalFormat("##.###");
+
+            holder.qntyPrice.setText("\u20b9"+df.format(result));
 
             holder.checkquantity.setOnClickListener(new View.OnClickListener() {
                 @Override
