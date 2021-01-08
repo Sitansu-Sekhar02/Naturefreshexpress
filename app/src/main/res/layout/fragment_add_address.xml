@@ -211,6 +211,8 @@
                     android:layout_below="@+id/tv5"
                     android:layout_width="match_parent"
                     android:paddingLeft="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableLeft="@drawable/ic_baseline_call_24"
                     android:layout_height="@dimen/_30sdp"
                     android:hint="Your mobile number"
                     android:singleLine="true"
@@ -255,6 +257,8 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@null"
                     android:id="@+id/edAddress"
+                    android:drawableLeft="@drawable/ic_baseline_note_add"
+                    android:drawablePadding="@dimen/_5sdp"
                     />
                 <View
                     android:layout_below="@+id/edAddress"
@@ -304,7 +308,8 @@
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:background="@color/green_600"
+                android:layout_gravity="center"
+                android:background="@drawable/rectangle_cart"
                 android:text="Save Address"
                 android:padding="0dp"
                 android:textAlignment="center"

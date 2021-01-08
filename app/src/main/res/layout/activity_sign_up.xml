@@ -55,7 +55,6 @@
                             app:font_name="NunitoBold.ttf"
                             android:paddingLeft="@dimen/_3sdp" />
 
-
                         <com.blucor.vsfarm.customecomponent.CustomEdittext
                             android:id="@+id/etName"
                             android:drawableLeft="@drawable/ic_baseline_person_24"
@@ -134,7 +133,7 @@
                     <com.blucor.vsfarm.customecomponent.CustomEdittext
                         android:id="@+id/etAddress"
                         style="@style/general_edittext_style"
-                        android:hint="Enter your address"
+                        android:hint="Enter your full address"
                         android:drawableLeft="@drawable/ic_baseline_note_add"
                         android:drawablePadding="@dimen/_5sdp"
                         android:textColor="@color/myblack"

@@ -2,7 +2,6 @@ package com.blucor.vsfarm.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -40,11 +39,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.blucor.vsfarm.Model.CartItem;
 import com.blucor.vsfarm.R;
-import com.blucor.vsfarm.activity.AdminDashActivity;
-import com.blucor.vsfarm.activity.DealerRegistration;
 import com.blucor.vsfarm.activity.DrawerActivity;
-import com.blucor.vsfarm.activity.LoginActivity;
-import com.blucor.vsfarm.activity.SignUpActivity;
 import com.blucor.vsfarm.activity.Utils;
 import com.blucor.vsfarm.extra.Preferences;
 import com.bumptech.glide.Glide;
@@ -183,7 +178,7 @@ public class CheckoutFragment extends Fragment {
                 } else {
                     Toasty.error(getActivity(), "No Internet Connection!", Toast.LENGTH_SHORT).show();
                 }
-                AdminDashActivity.count++;
+                //AdminDashActivity.count++;
             }
         });
 
@@ -382,7 +377,6 @@ public class CheckoutFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("user_id",preferences.get("user_id"));
-
 
                 return parameters;
             }

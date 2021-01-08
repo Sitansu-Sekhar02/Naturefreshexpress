@@ -217,7 +217,6 @@ public class DashboardFragment extends Fragment {
         adapter.updateList(temp);
     }
 
-
     private void ProgressForMain() {
         dialog = new Dialog(getActivity(), android.R.style.Theme_Translucent_NoTitleBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -22,7 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.AdminDashActivity"/>
         <activity android:name=".activity.DrawerActivity" />
         <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.LoginActivity" />

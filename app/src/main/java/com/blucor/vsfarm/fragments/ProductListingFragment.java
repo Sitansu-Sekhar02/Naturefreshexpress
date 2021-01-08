@@ -341,7 +341,7 @@ public class ProductListingFragment extends Fragment {
                         product.setCategory_id(category_id);
                         product.setProduct_id(product_id);
                         product.setProduct_name(product_name);
-                        product.setAvl_qt("Avl Qty:"+avl_qty);
+                        product.setAvl_qt(avl_qty);
                         product.setTax_rate(tax_Rate);
                         product.setProduct_image(product_image);
                         if(preferences.get("usertype").equalsIgnoreCase("customer")){
@@ -379,8 +379,6 @@ public class ProductListingFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("cat_id", getArguments().getString("id"));
-
-                // parameters.put("cat_id","4");
                 return parameters;
             }
         };

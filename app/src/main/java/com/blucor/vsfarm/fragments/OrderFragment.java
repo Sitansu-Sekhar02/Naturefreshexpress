@@ -153,8 +153,9 @@ public class OrderFragment extends Fragment {
                         String product_price=jsonObject.getString("product_price");
                         String product_size=jsonObject.getString("product_size");
 
-                       // String product_image="http://vsfastirrigation.com/upload/cat_image/"+jsonObject.getString("product_image");
+                        String product_image=jsonObject.getString("product_image");
 
+                       // String res= product_image.replace("//","");
 
                         order.setUser_id(user_id);
                         order.setProduct_id(product_id);
@@ -162,7 +163,7 @@ public class OrderFragment extends Fragment {
                         order.setProduct_quantity(product_quantity);
                         order.setOrder_date_month(order_date_month);
                         order.setOrder_id(order_id);
-                        //order.setProduct_image(product_image);
+                        order.setProduct_image(product_image);
                         order.setProduct_price(product_price);
                         order.setProduct_size(product_size);
 

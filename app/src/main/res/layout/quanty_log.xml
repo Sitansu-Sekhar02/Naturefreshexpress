@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="@color/black_trans"
     tools:ignore="MissingDefaultResource">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -79,12 +80,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@color/green_600"
+                android:background="@drawable/rectangle_cart"
                 android:contentDescription="@null"
                 android:paddingHorizontal="@dimen/_5sdp"
                 android:paddingVertical="@dimen/_5sdp"
                 android:text="Add Quantity"
                 android:textAllCaps="true"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_11sdp" />
         </LinearLayout>

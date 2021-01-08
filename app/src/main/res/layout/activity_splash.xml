@@ -7,7 +7,6 @@
     android:background="#ffff"
     tools:context=".activity.SplashActivity">
     <ImageView
-        android:layout_marginBottom="@dimen/_30sdp"
         android:id="@+id/image"
         android:layout_centerInParent="true"
         android:background="@drawable/vs"
