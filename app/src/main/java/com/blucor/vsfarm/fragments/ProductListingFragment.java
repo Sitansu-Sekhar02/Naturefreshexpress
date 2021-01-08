@@ -404,6 +404,7 @@ public class ProductListingFragment extends Fragment {
         RelativeLayout rlAddtocart;
         RelativeLayout rlOutofstock;
 
+
         LinearLayout llAddtocart;
 
         CardView cardView;
@@ -426,6 +427,7 @@ public class ProductListingFragment extends Fragment {
             avl_qty=itemView.findViewById(R.id.available_qty);
             //spinner = itemView.findViewById(R.id.product_size);
             productSize=itemView.findViewById(R.id.product_size);
+
 
         }
     }
@@ -472,6 +474,15 @@ public class ProductListingFragment extends Fragment {
             holder.tvDesc.setText(mModel.get(position).getProduct_id());
             holder.avl_qty.setText(mModel.get(position).getAvl_qt());
             holder.productSize.setText(mModel.get(position).getProduct_size());
+
+            if (mModel.get(position).getAvl_qt().equals("0")){
+
+                holder.rlOutofstock.setVisibility(View.VISIBLE);
+                holder.rlAddtocart.setVisibility(View.GONE);
+            }else {
+                 holder.rlOutofstock.setVisibility(View.GONE);
+                 holder.rlAddtocart.setVisibility(View.VISIBLE);
+            }
 
             //
             //Log.e("arraya", "" + mModel.get(position).getArray());
